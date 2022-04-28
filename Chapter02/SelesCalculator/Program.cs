@@ -10,11 +10,10 @@ namespace SelesCalculator {
         static void Main (string[] args) {
 
             SalesCounter sales = new SalesCounter ("sales.csv");
-            Dictionary<string, int> amountPerStpre = sales.GetPerStoreSales ();
+            IDictionary<string, int> amountPerStpre = sales.GetPerStoreSales ();
             foreach (KeyValuePair<string,int> obj in amountPerStpre) {
                 Console.WriteLine ("{0} {1}",obj.Key, obj.Value);
             }
-
         }
 
 
