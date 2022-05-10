@@ -21,6 +21,6 @@ namespace Exersise {
             Length = length;
         }
 
-        List<Song> songs = new List<Song> ();
+        
     }
 }
