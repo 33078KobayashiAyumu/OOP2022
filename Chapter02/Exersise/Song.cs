@@ -14,5 +14,9 @@ namespace Exersise {
 
         //演奏時間(秒)
         public int Length { get; set; }
+
+        public Song (string Title,string ArtistName,int Length) {
+
+        }
     }
 }
