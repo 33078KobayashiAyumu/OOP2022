@@ -9,11 +9,11 @@ namespace Exersise {
         static void Main (string[] args) {
 
             var songs = new Song[] {
-                new Song("a","f",1),
-                new Song("b","g",2),
-                new Song("c","h",3),
-                new Song("d","i",4),
-                new Song("e","j",5),
+                new Song("a","f",100),
+                new Song("b","g",200),
+                new Song("c","h",300),
+                new Song("d","i",400),
+                new Song("e","j",500),
             };
 
             PrintSongs (songs);
@@ -22,7 +22,7 @@ namespace Exersise {
 
         private static void PrintSongs (Song[] songs) {
             foreach (var song in songs) {
-                Console.WriteLine ("{0} {1}", song, songs);
+                Console.WriteLine ("{0} {1}　{2:m\\:ss}", song.Title, song.ArtistName, TimeSpan.FromSeconds(song.Length));;
             }
         }
     }
