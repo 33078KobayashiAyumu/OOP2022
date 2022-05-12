@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelesCalculator", "Chapter0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise", "Chapter02\Exersise\Exercise.csproj", "{B1DD9755-DBC4-4B38-9436-99AF5A00D21C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise2", "ConsoleApp1\Exercise2.csproj", "{B0EAF26D-BFD9-4911-BCD0-E7D4A3503AEF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise2", "Chapter02\Exersise2\Exercise2.csproj", "{B0EAF26D-BFD9-4911-BCD0-E7D4A3503AEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
