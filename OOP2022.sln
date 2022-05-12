@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelesCalculator", "Chapter0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise", "Chapter02\Exersise\Exercise.csproj", "{B1DD9755-DBC4-4B38-9436-99AF5A00D21C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise2", "ConsoleApp1\Exercise2.csproj", "{B0EAF26D-BFD9-4911-BCD0-E7D4A3503AEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{B1DD9755-DBC4-4B38-9436-99AF5A00D21C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1DD9755-DBC4-4B38-9436-99AF5A00D21C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1DD9755-DBC4-4B38-9436-99AF5A00D21C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0EAF26D-BFD9-4911-BCD0-E7D4A3503AEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0EAF26D-BFD9-4911-BCD0-E7D4A3503AEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0EAF26D-BFD9-4911-BCD0-E7D4A3503AEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0EAF26D-BFD9-4911-BCD0-E7D4A3503AEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,6 +43,7 @@ Global
 		{13001123-3233-4D03-8783-8668D3B21878} = {8B00C031-172B-4A77-A0AD-9907CFA9FC8F}
 		{4D90CBC0-8BAB-4468-9588-76C611D62A4B} = {8B00C031-172B-4A77-A0AD-9907CFA9FC8F}
 		{B1DD9755-DBC4-4B38-9436-99AF5A00D21C} = {8B00C031-172B-4A77-A0AD-9907CFA9FC8F}
+		{B0EAF26D-BFD9-4911-BCD0-E7D4A3503AEF} = {8B00C031-172B-4A77-A0AD-9907CFA9FC8F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B1EA921C-810E-4716-A75C-C7E515900697}
