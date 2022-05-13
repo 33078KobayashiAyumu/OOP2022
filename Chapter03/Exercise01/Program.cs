@@ -10,7 +10,7 @@ namespace Exercise01 {
             var numbers = new List<int> { 12, 87, 94, 14, 53, 20, 40, 35, 76, 91, 17 };
 
             Exercise01 (numbers);
-            Console.WriteLine ("割り切れる数が存在する");
+            Console.WriteLine ("-----------");
 
             Exercise01_2 (numbers);
             Console.WriteLine ("-----------");
@@ -18,6 +18,12 @@ namespace Exercise01 {
 
         private static void Exercise01 (List<int> numbers) {
             var exists = numbers.Exists (s => s % 8 == 0 || s % 9 == 0);
+            if (exists) {
+                Console.WriteLine ("存在している");
+            }
+            else {
+                Console.WriteLine ("存在していない");
+            }
         }
 
         private static void Exercise01_2 (List<int> numbers) {
