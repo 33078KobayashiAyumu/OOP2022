@@ -13,7 +13,7 @@ namespace Exercise01 {
             Console.WriteLine ("割り切れる数が存在する");
 
             Exercise01_2 (numbers);
-            Console.WriteLine ("");
+            Console.WriteLine ("-----------");
         }
 
         private static void Exercise01 (List<int> numbers) {
@@ -21,7 +21,7 @@ namespace Exercise01 {
         }
 
         private static void Exercise01_2 (List<int> numbers) {
-            
+            numbers.ForEach (s => Console.WriteLine (s / 2.0));
         }
     }
 }
