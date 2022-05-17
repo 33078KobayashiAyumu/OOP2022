@@ -14,10 +14,18 @@ namespace Exercise01 {
 
             Exercise01_2 (numbers);
             Console.WriteLine ("-----------");
+
+            Exercise01_3 (numbers);
+            Console.WriteLine ("-----------");
+
+            Exercise01_4 (numbers);
+            Console.WriteLine ("-----------");
         }
 
+        
+
         private static void Exercise01 (List<int> numbers) {
-            var exists = numbers.Exists (s => s % 8 == 0 || s % 9 == 0);
+            var exists = numbers.Exists (n => n % 8 == 0 || n % 9 == 0);
             if (exists) {
                 Console.WriteLine ("存在している");
             }
@@ -27,7 +35,21 @@ namespace Exercise01 {
         }
 
         private static void Exercise01_2 (List<int> numbers) {
-            numbers.ForEach (s => Console.WriteLine (s / 2.0));
+            numbers.ForEach (n => Console.WriteLine (n / 2.0));
+        }
+
+        private static void Exercise01_3 (List<int> numbers) {
+            foreach (var n in numbers.Where(n => n >= 50)) {
+                Console.WriteLine (n);
+            }
+        }
+
+        private static void Exercise01_4 (List<int> numbers) {
+            var list = numbers.Select (n => n * 2);
+            numbers[5] = 5000;
+            foreach (var n in list) {
+                Console.WriteLine (n);
+            }
         }
     }
 }

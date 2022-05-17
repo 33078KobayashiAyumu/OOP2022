@@ -10,12 +10,21 @@ namespace Section01 {
             var list = new List<string> {
                "Tokyo", "New Delhi", "Bangkok", "London", "Paris", "Berlin", "Canberra", "Hong Kong",
             };
+            var numbers = new List<int> { 12, 87, 94, 14, 53, 20, 40, 35, 76, 91, 17 };
 
-            var names = list.FindAll (s => s.Length <= 5);
-            names.ForEach (s => Console.WriteLine (s));
-           // foreach(var s in names) {
+
+            var removeCount = list.RemoveAll (s => s.Contains("on"));
+            Console.WriteLine (removeCount);
+            list.ForEach (s => Console.WriteLine (s));
+            // foreach(var s in names) {
             //Console.WriteLine (s);
             //}
+
+
+
+
+            //foreach (var item in numbers.Where (n => n > 50)) ;
+           // Console.WriteLine ();
         }
     }
 }
