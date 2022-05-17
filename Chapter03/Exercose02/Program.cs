@@ -10,11 +10,11 @@ namespace Exercose02 {
             var names = new List<string> {
                "Tokyo", "New Delhi", "Bangkok", "London", "Paris", "Berlin", "Canberra", "Hong Kong",
             };
-            Exercise01 (names);
-            Console.WriteLine ("-----------");
+            //Exercise01 (names);
+            //Console.WriteLine ("-----------");
 
-            Exercise01_2 (names);
-            Console.WriteLine ("-----------");
+            //Exercise01_2 (names);
+            //Console.WriteLine ("-----------");
 
             Exercise01_3 (names);
             Console.WriteLine ("-----------");
@@ -23,7 +23,7 @@ namespace Exercose02 {
             Console.WriteLine ("-----------");
 
         }
-        private static void Exercise01 (List<string> names) {
+       private static void Exercise01 (List<string> names) {
             Console.WriteLine ("都市名を入力。空行で終了");
 
             do {
@@ -37,14 +37,16 @@ namespace Exercose02 {
             } while (true);
         }
         private static void Exercise01_2 (List<string> names) {
-            
+            var count = names.Count (n => n.Contains ("o"));
+            Console.WriteLine (count);
         }
         private static void Exercise01_3 (List<string> names) {
-            throw new NotImplementedException ();
+            var list = names.Where(n => n.Contains ("o")).Count();
+            
         }
 
         private static void Exercise01_4 (List<string> names) {
-            throw new NotImplementedException ();
+            
         }
     }
 }
