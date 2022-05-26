@@ -10,9 +10,9 @@ namespace Exercise02 {
         static void Main (string[] args) {
             //4-2-1
             var ymCollection = new YearMonth[] { 
-                new YearMonth(1999,1),
+                new YearMonth(1999,8),
                 new YearMonth(2000,12),
-                new YearMonth(2001,1),
+                new YearMonth(2001,7),
                 new YearMonth(2022,5),
                 new YearMonth(2101,1),//(P103)最後のカンマはつけておく
             };
@@ -35,11 +35,17 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_6 (YearMonth[] ymCollection) {
-            foreach (var ym in ymCollection.OrderByDescending(ym => ym.Year)) {
+            //①月昇順 foreach (var ym in ymCollection.OrderBy(ym => ym.Month)) {
+            //②偶数年昇順 foreach (var ym in ymCollection.Where (ym => ym.Year %2 == 0).OrderBy(ym => ym.Year )) {
+            //③閏年
+            foreach (var ym in ymCollection.Where(ym => DateTime.IsLeapYear(ym.Year))) {
                 Console.WriteLine (ym);
             }
+            // ④　12月に一番近い月
+            var date = ymCollection.Max (ym => ym.Month);
+            Console.WriteLine (date);
         }
-
+        
 
         //4-2-3
         //最初に見つかった21世紀のおぶじぇくとを返す
