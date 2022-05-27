@@ -11,7 +11,7 @@ namespace Exercise02 {
 
             if (int.TryParse(inp,out var parse)) {
 
-                Console.WriteLine ("{0:N}",parse);
+                Console.WriteLine ("{0:#,#}",parse);
             }else {
                 Console.WriteLine ("失敗");
             }

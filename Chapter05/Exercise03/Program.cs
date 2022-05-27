@@ -25,23 +25,35 @@ namespace Exercise03 {
         }
 
         private static void Exercise3_1 (string text) {
-            throw new NotImplementedException ();
+            var spaces = text.Count (c => c == ' ');
+            Console.WriteLine ("空白数：{0}", spaces);
         }
 
         private static void Exercise3_2 (string text) {
-            throw new NotImplementedException ();
+            var change = text.Replace ("big", "small");
+            Console.WriteLine (change);
         }
 
         private static void Exercise3_3 (string text) {
-            throw new NotImplementedException ();
+            var words = text.Split (' ');
+               Console.WriteLine("{0}",words.Length);
         }
 
         private static void Exercise3_4 (string text) {
-            throw new NotImplementedException ();
+            var words = text.Split (' ');
+            foreach (var tx in words.Where(c => c.Length <= 4)) {
+                Console.WriteLine (tx);
+            }
         }
 
         private static void Exercise3_5 (string text) {
-            throw new NotImplementedException ();
+            var words = text.Split (' ');
+            var sb = new StringBuilder ();
+
+            foreach (var tx in words) {
+                sb.Append (tx + " ");
+            }
+            Console.WriteLine (sb);
         }
     }
 }
