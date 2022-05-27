@@ -53,7 +53,8 @@ namespace Exercise03 {
             foreach (var tx in words) {
                 sb.Append (tx + " ");
             }
-            Console.WriteLine (sb);
+            var str = sb.ToString ().TrimEnd();
+            Console.WriteLine (str + "1");
         }
     }
 }
