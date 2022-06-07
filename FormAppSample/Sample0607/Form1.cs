@@ -9,22 +9,24 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Sample0607 {
-    public partial class Form1 : Form {
-        public Form1 () {
+    public partial class けいさん : Form {
+        Random r = new Random ();
+        public けいさん () {
             InitializeComponent ();
+        }
+
+        private void btRund_Click (object sender, EventArgs e) {
+            
+            Number.Value =  r.Next ((int)randMin.Value, (int)randMax.Value+1);
+
         }
 
         private void label1_Click (object sender, EventArgs e) {
 
         }
 
-        private void button1_Click (object sender, EventArgs e) {
-            if (nm2.Value != 0) {
-                nma.Value = nm1.Value / nm2.Value;
-                nmm.Value = nm1.Value / nm2.Value;
-            } else {
-                MessageBox.Show ("われません","error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-            }
+        private void randMin_ValueChanged (object sender, EventArgs e) {
+
         }
     }
 }

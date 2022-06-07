@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Sample0607 {
+namespace NumberGame {
     static class Program {
         /// <summary>
         /// アプリケーションのメイン エントリ ポイントです。
@@ -13,7 +13,7 @@ namespace Sample0607 {
         static void Main () {
             Application.EnableVisualStyles ();
             Application.SetCompatibleTextRenderingDefault (false);
-            Application.Run (new けいさん ());
+            Application.Run (new Form1 ());
         }
     }
 }
