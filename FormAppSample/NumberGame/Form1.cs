@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace NumberGame {
     public partial class Form1 : Form {
-        Random r = new Random ();
+        private Random r = new Random ();
         private int random;
         public Form1 () {
             InitializeComponent ();
@@ -20,7 +20,7 @@ namespace NumberGame {
 
         }
         private void Form1_Load (object sender, EventArgs e) {
-            random = r.Next (1, 51);
+            GetRand ();
 
         }
         private void button1_Click (object sender, EventArgs e) {
@@ -35,6 +35,13 @@ namespace NumberGame {
 
         }
 
-        
+        private void maxNum_ValueChanged (object sender, EventArgs e) {
+            GetRand ();
+        }
+
+        private void GetRand () {
+            random = r.Next (1, (int)maxNum.Value+1);
+            this.Text = random.ToString ();
+        }
     }
 }
