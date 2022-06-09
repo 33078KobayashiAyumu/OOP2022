@@ -13,5 +13,29 @@ namespace AddressBook {
         public Form1 () {
             InitializeComponent ();
         }
+
+        private void textBox3_TextChanged (object sender, EventArgs e) {
+
+        }
+
+        private void checkBox1_CheckedChanged (object sender, EventArgs e) {
+
+        }
+
+        private void checkBox2_CheckedChanged (object sender, EventArgs e) {
+
+        }
+
+        private void checkBox3_CheckedChanged (object sender, EventArgs e) {
+
+        }
+
+        private void checkBox4_CheckedChanged (object sender, EventArgs e) {
+
+        }
+
+        private void button3_Click (object sender, EventArgs e) {
+
+        }
     }
 }
