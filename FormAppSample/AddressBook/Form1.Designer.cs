@@ -108,11 +108,17 @@ namespace AddressBook {
             // dgvPrersons
             // 
             this.dgvPrersons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPrersons.Location = new System.Drawing.Point(24, 264);
+            this.dgvPrersons.Location = new System.Drawing.Point(37, 262);
+            this.dgvPrersons.MultiSelect = false;
             this.dgvPrersons.Name = "dgvPrersons";
             this.dgvPrersons.RowTemplate.Height = 21;
+            this.dgvPrersons.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPrersons.Size = new System.Drawing.Size(713, 174);
             this.dgvPrersons.TabIndex = 2;
+            this.dgvPrersons.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPrersons_CellClick);
+            this.dgvPrersons.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPrersons_CellContentClick);
+            this.dgvPrersons.Click += new System.EventHandler(this.dgvPrersons_Click);
+            this.dgvPrersons.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvPrersons_MouseClick);
             // 
             // tbMainAddress
             // 
@@ -252,6 +258,7 @@ namespace AddressBook {
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "住所録";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrersons)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).EndInit();
             this.ResumeLayout(false);

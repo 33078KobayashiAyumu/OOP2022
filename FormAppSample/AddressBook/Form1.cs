@@ -55,8 +55,76 @@ namespace AddressBook {
                 Adress = tbAdress.Text,
                 Company = tbCompany.Text,
                 Picture = pbPicture.Image,
+                listGroup = GetChckBoxGroup(),
             };
             listPerson.Add (newPerson);
+        }
+
+        //チェックボックスにセットされている値をリストとして取り出す
+        private List<Person.GroupType> GetChckBoxGroup () {
+            var listGroup = new List<Person.GroupType> ();
+            if (cbFamily.Checked) {
+                listGroup.Add (Person.GroupType.家族);
+            }
+            if (cbFriend.Checked) {
+                listGroup.Add (Person.GroupType.友人);
+            }
+            if (cbOther.Checked){
+                listGroup.Add (Person.GroupType.仕事);
+            }
+            if (cbOther.Checked) {
+                listGroup.Add (Person.GroupType.その他);
+            }
+            return listGroup;
+        }
+
+        private void dgvPrersons_CellContentClick (object sender, DataGridViewCellEventArgs e) {
+
+        }
+
+
+        //データグリットビューがクリックされたときのイベントハンドラ
+        private void dgvPrersons_CellClick (object sender, DataGridViewCellEventArgs e) {
+            var getIndex = dgvPrersons.CurrentRow.Index;
+
+            tbName.Text = listPerson[getIndex].Name;
+            tbMainAddress.Text = listPerson[getIndex].MailAddress;
+            tbAdress.Text = listPerson[getIndex].Adress;
+            tbCompany.Text = listPerson[getIndex].Company;
+            pbPicture.Image = listPerson[getIndex].Picture;
+
+            foreach (var group in listPerson[getIndex].listGroup) {
+                switch (group) {
+                    case Person.GroupType.家族:
+                        cbFamily.Checked = true;
+                        break;
+                    case Person.GroupType.友人:
+                        cbFriend.Checked = true;
+                        break;
+                    case Person.GroupType.仕事:
+                        cbWork.Checked = true;
+                        break;
+                    case Person.GroupType.その他:
+                        cbOther.Checked = true;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+
+
+        
+        private void dgvPrersons_Click (object sender, EventArgs e) {
+            
+        }
+
+        private void dgvPrersons_MouseClick (object sender, MouseEventArgs e) {
+            
+        }
+
+        private void Form1_Load (object sender, EventArgs e) {
 
         }
     }
