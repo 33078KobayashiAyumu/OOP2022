@@ -83,8 +83,20 @@ namespace AddressBook {
         }
 
 
-        //データグリットビューがクリックされたときのイベントハンドラ
+        
         private void dgvPrersons_CellClick (object sender, DataGridViewCellEventArgs e) {
+            
+        }
+
+        private void groupChekBoxClear () {
+            cbFamily.Checked = cbFriend.Checked = cbWork.Checked = cbOther.Checked = false;
+        }
+
+
+        //データグリットビューがクリックされたときのイベントハンドラ
+        private void dgvPrersons_Click (object sender, EventArgs e) {
+            if (dgvPrersons.CurrentRow == null) return;
+            
             var getIndex = dgvPrersons.CurrentRow.Index;
 
             tbName.Text = listPerson[getIndex].Name;
@@ -92,6 +104,8 @@ namespace AddressBook {
             tbAdress.Text = listPerson[getIndex].Adress;
             tbCompany.Text = listPerson[getIndex].Company;
             pbPicture.Image = listPerson[getIndex].Picture;
+            if (tbName.Text == null) return;
+            groupChekBoxClear ();
 
             foreach (var group in listPerson[getIndex].listGroup) {
                 switch (group) {
@@ -111,12 +125,17 @@ namespace AddressBook {
                         break;
                 }
             }
-        }
+            if (listPerson.Count == 0) {
+                btDel.Enabled = false;
+                btUpdate.Enabled = false;
+                btPictureClear.Enabled = false;
 
+            } else {
+                btDel.Enabled = true;
+                btUpdate.Enabled = true;
+                btPictureClear.Enabled = true;
 
-
-        
-        private void dgvPrersons_Click (object sender, EventArgs e) {
+            }
             
         }
 
@@ -125,7 +144,29 @@ namespace AddressBook {
         }
 
         private void Form1_Load (object sender, EventArgs e) {
+            btDel.Enabled = false;
+            btUpdate.Enabled = false;
+            btPictureClear.Enabled = false;
+        }
 
+        // 更新ボタンが押された時の処理
+        private void btUpdate_Click (object sender, EventArgs e) {
+            if (dgvPrersons.CurrentRow == null) return;
+            var getIndex = dgvPrersons.CurrentRow.Index;
+
+            listPerson[getIndex].Name = tbName.Text;
+            listPerson[getIndex].MailAddress = tbMainAddress.Text;
+            listPerson[getIndex].Adress = tbAdress.Text;
+            listPerson[getIndex].Company = tbCompany.Text;
+            listPerson[getIndex].Picture = pbPicture.Image;
+            listPerson[getIndex].listGroup = GetChckBoxGroup ();
+            dgvPrersons.Refresh (); // データグリットビュー更新
+        }
+
+        private void btDel_Click (object sender, EventArgs e) {
+            if (dgvPrersons.CurrentRow == null) return;
+            var getIndex = dgvPrersons.CurrentRow.Index;
+            listPerson.RemoveAt (getIndex);
         }
     }
 }
