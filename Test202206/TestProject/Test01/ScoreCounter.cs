@@ -7,7 +7,7 @@ namespace Test01 {
 
         // コンストラクタ
         public ScoreCounter(string filePath) {
-
+            _score = ReadScore (filePath);
 
 
             
@@ -16,8 +16,8 @@ namespace Test01 {
 
         //メソッドの概要： 
         private static IEnumerable<Student> ReadScore(string filePath) {
-            
-
+            List<Student> students = new List<Student> ();
+            string line = File.ReadAllLines (filePath);
 
 
 
@@ -28,8 +28,15 @@ namespace Test01 {
 
         //メソッドの概要： 
         public IDictionary<string, int> GetPerStudentScore() {
-
-
+            var num = new Dictionary<string, int> ();
+            foreach (var scores in _score) {
+                if (num.ContainsKey (scores.Subject)) {
+                    num[scores.Subject] += scores.Score;
+                } else {
+                    num[scores.Subject] = scores.Score;
+                }
+            }
+            return num;
 
 
 
