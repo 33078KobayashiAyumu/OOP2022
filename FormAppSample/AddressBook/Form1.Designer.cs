@@ -110,6 +110,7 @@ namespace AddressBook {
             // dgvPrersons
             // 
             this.dgvPrersons.AllowUserToAddRows = false;
+            this.dgvPrersons.AllowUserToDeleteRows = false;
             this.dgvPrersons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPrersons.Location = new System.Drawing.Point(37, 262);
             this.dgvPrersons.MultiSelect = false;

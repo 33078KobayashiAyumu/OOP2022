@@ -50,6 +50,7 @@ namespace AddressBook {
 
         private void btAddPerson_Click (object sender, EventArgs e) {
             Person newPerson = new Person {
+
                 Name = tbName.Text,
                 MailAddress = tbMainAddress.Text,
                 Adress = tbAdress.Text,
@@ -98,13 +99,13 @@ namespace AddressBook {
             if (dgvPrersons.CurrentRow == null) return;
             
             var getIndex = dgvPrersons.CurrentRow.Index;
-
+            
             tbName.Text = listPerson[getIndex].Name;
             tbMainAddress.Text = listPerson[getIndex].MailAddress;
             tbAdress.Text = listPerson[getIndex].Adress;
             tbCompany.Text = listPerson[getIndex].Company;
             pbPicture.Image = listPerson[getIndex].Picture;
-            if (tbName.Text == null) return;
+            
             groupChekBoxClear ();
 
             foreach (var group in listPerson[getIndex].listGroup) {
@@ -125,17 +126,7 @@ namespace AddressBook {
                         break;
                 }
             }
-            if (listPerson.Count == 0) {
-                btDel.Enabled = false;
-                btUpdate.Enabled = false;
-                btPictureClear.Enabled = false;
-
-            } else {
-                btDel.Enabled = true;
-                btUpdate.Enabled = true;
-                btPictureClear.Enabled = true;
-
-            }
+            
             
         }
 
@@ -143,15 +134,11 @@ namespace AddressBook {
             
         }
 
-        private void Form1_Load (object sender, EventArgs e) {
-            btDel.Enabled = false;
-            btUpdate.Enabled = false;
-            btPictureClear.Enabled = false;
-        }
+        
 
         // 更新ボタンが押された時の処理
         private void btUpdate_Click (object sender, EventArgs e) {
-            if (dgvPrersons.CurrentRow == null) return;
+
             var getIndex = dgvPrersons.CurrentRow.Index;
 
             listPerson[getIndex].Name = tbName.Text;
@@ -164,9 +151,18 @@ namespace AddressBook {
         }
 
         private void btDel_Click (object sender, EventArgs e) {
-            if (dgvPrersons.CurrentRow == null) return;
+
             var getIndex = dgvPrersons.CurrentRow.Index;
             listPerson.RemoveAt (getIndex);
+
+            if (listPerson.Count() == 0) {
+                btDel.Enabled = false;
+                btUpdate.Enabled = false;
+            }
+        }
+        private void Form1_Load (object sender, EventArgs e) {
+            btDel.Enabled = false;
+            btUpdate.Enabled = false;
         }
     }
 }
