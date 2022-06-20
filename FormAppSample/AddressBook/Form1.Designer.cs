@@ -45,6 +45,9 @@ namespace AddressBook {
             this.btUpdate = new System.Windows.Forms.Button();
             this.btDel = new System.Windows.Forms.Button();
             this.cbCompany = new System.Windows.Forms.ComboBox();
+            this.btOpen = new System.Windows.Forms.Button();
+            this.btSave = new System.Windows.Forms.Button();
+            this.sfdSaveDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrersons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
             this.SuspendLayout();
@@ -112,13 +115,13 @@ namespace AddressBook {
             this.dgvPrersons.AllowUserToAddRows = false;
             this.dgvPrersons.AllowUserToDeleteRows = false;
             this.dgvPrersons.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPrersons.Location = new System.Drawing.Point(37, 262);
+            this.dgvPrersons.Location = new System.Drawing.Point(67, 262);
             this.dgvPrersons.MultiSelect = false;
             this.dgvPrersons.Name = "dgvPrersons";
             this.dgvPrersons.ReadOnly = true;
             this.dgvPrersons.RowTemplate.Height = 21;
             this.dgvPrersons.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPrersons.Size = new System.Drawing.Size(612, 174);
+            this.dgvPrersons.Size = new System.Drawing.Size(586, 208);
             this.dgvPrersons.TabIndex = 2;
             this.dgvPrersons.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPrersons_CellClick);
             this.dgvPrersons.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPrersons_CellContentClick);
@@ -264,6 +267,28 @@ namespace AddressBook {
             this.cbCompany.Size = new System.Drawing.Size(283, 27);
             this.cbCompany.TabIndex = 7;
             // 
+            // btOpen
+            // 
+            this.btOpen.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btOpen.Location = new System.Drawing.Point(8, 392);
+            this.btOpen.Name = "btOpen";
+            this.btOpen.Size = new System.Drawing.Size(51, 38);
+            this.btOpen.TabIndex = 4;
+            this.btOpen.Text = "開く...";
+            this.btOpen.UseVisualStyleBackColor = true;
+            this.btOpen.Click += new System.EventHandler(this.btOpen_Click);
+            // 
+            // btSave
+            // 
+            this.btSave.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btSave.Location = new System.Drawing.Point(8, 436);
+            this.btSave.Name = "btSave";
+            this.btSave.Size = new System.Drawing.Size(53, 34);
+            this.btSave.TabIndex = 4;
+            this.btSave.Text = "保存";
+            this.btSave.UseVisualStyleBackColor = true;
+            this.btSave.Click += new System.EventHandler(this.btSave_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -275,6 +300,8 @@ namespace AddressBook {
             this.Controls.Add(this.pbPicture);
             this.Controls.Add(this.btDel);
             this.Controls.Add(this.btUpdate);
+            this.Controls.Add(this.btSave);
+            this.Controls.Add(this.btOpen);
             this.Controls.Add(this.btAddPerson);
             this.Controls.Add(this.cbOther);
             this.Controls.Add(this.cbWork);
@@ -322,6 +349,9 @@ namespace AddressBook {
         private System.Windows.Forms.Button btUpdate;
         private System.Windows.Forms.Button btDel;
         private System.Windows.Forms.ComboBox cbCompany;
+        private System.Windows.Forms.Button btOpen;
+        private System.Windows.Forms.Button btSave;
+        private System.Windows.Forms.SaveFileDialog sfdSaveDialog;
     }
 }
 
