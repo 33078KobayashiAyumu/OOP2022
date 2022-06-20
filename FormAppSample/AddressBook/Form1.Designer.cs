@@ -33,7 +33,6 @@ namespace AddressBook {
             this.dgvPrersons = new System.Windows.Forms.DataGridView();
             this.tbMainAddress = new System.Windows.Forms.TextBox();
             this.tbAdress = new System.Windows.Forms.TextBox();
-            this.tbCompany = new System.Windows.Forms.TextBox();
             this.cbFamily = new System.Windows.Forms.CheckBox();
             this.cbFriend = new System.Windows.Forms.CheckBox();
             this.cbWork = new System.Windows.Forms.CheckBox();
@@ -45,6 +44,7 @@ namespace AddressBook {
             this.ofdFileOpenDialog = new System.Windows.Forms.OpenFileDialog();
             this.btUpdate = new System.Windows.Forms.Button();
             this.btDel = new System.Windows.Forms.Button();
+            this.cbCompany = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrersons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).BeginInit();
             this.SuspendLayout();
@@ -101,7 +101,7 @@ namespace AddressBook {
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label5.Location = new System.Drawing.Point(62, 175);
+            this.label5.Location = new System.Drawing.Point(62, 209);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(97, 27);
             this.label5.TabIndex = 0;
@@ -143,18 +143,10 @@ namespace AddressBook {
             this.tbAdress.TabIndex = 1;
             this.tbAdress.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
-            // tbCompany
-            // 
-            this.tbCompany.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbCompany.Location = new System.Drawing.Point(183, 152);
-            this.tbCompany.Name = "tbCompany";
-            this.tbCompany.Size = new System.Drawing.Size(282, 26);
-            this.tbCompany.TabIndex = 1;
-            // 
             // cbFamily
             // 
             this.cbFamily.AutoSize = true;
-            this.cbFamily.Location = new System.Drawing.Point(182, 185);
+            this.cbFamily.Location = new System.Drawing.Point(183, 210);
             this.cbFamily.Name = "cbFamily";
             this.cbFamily.Size = new System.Drawing.Size(48, 16);
             this.cbFamily.TabIndex = 3;
@@ -165,7 +157,7 @@ namespace AddressBook {
             // cbFriend
             // 
             this.cbFriend.AutoSize = true;
-            this.cbFriend.Location = new System.Drawing.Point(236, 185);
+            this.cbFriend.Location = new System.Drawing.Point(237, 210);
             this.cbFriend.Name = "cbFriend";
             this.cbFriend.Size = new System.Drawing.Size(48, 16);
             this.cbFriend.TabIndex = 3;
@@ -176,7 +168,7 @@ namespace AddressBook {
             // cbWork
             // 
             this.cbWork.AutoSize = true;
-            this.cbWork.Location = new System.Drawing.Point(290, 184);
+            this.cbWork.Location = new System.Drawing.Point(291, 209);
             this.cbWork.Name = "cbWork";
             this.cbWork.Size = new System.Drawing.Size(48, 16);
             this.cbWork.TabIndex = 3;
@@ -187,7 +179,7 @@ namespace AddressBook {
             // cbOther
             // 
             this.cbOther.AutoSize = true;
-            this.cbOther.Location = new System.Drawing.Point(344, 184);
+            this.cbOther.Location = new System.Drawing.Point(345, 209);
             this.cbOther.Name = "cbOther";
             this.cbOther.Size = new System.Drawing.Size(55, 16);
             this.cbOther.TabIndex = 3;
@@ -263,11 +255,21 @@ namespace AddressBook {
             this.btDel.UseVisualStyleBackColor = true;
             this.btDel.Click += new System.EventHandler(this.btDel_Click);
             // 
+            // cbCompany
+            // 
+            this.cbCompany.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.cbCompany.FormattingEnabled = true;
+            this.cbCompany.Location = new System.Drawing.Point(182, 151);
+            this.cbCompany.Name = "cbCompany";
+            this.cbCompany.Size = new System.Drawing.Size(283, 27);
+            this.cbCompany.TabIndex = 7;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(661, 482);
+            this.Controls.Add(this.cbCompany);
             this.Controls.Add(this.btPictureClear);
             this.Controls.Add(this.btPictureOpen);
             this.Controls.Add(this.pbPicture);
@@ -279,7 +281,6 @@ namespace AddressBook {
             this.Controls.Add(this.cbFriend);
             this.Controls.Add(this.cbFamily);
             this.Controls.Add(this.dgvPrersons);
-            this.Controls.Add(this.tbCompany);
             this.Controls.Add(this.tbAdress);
             this.Controls.Add(this.tbMainAddress);
             this.Controls.Add(this.tbName);
@@ -309,7 +310,6 @@ namespace AddressBook {
         private System.Windows.Forms.DataGridView dgvPrersons;
         private System.Windows.Forms.TextBox tbMainAddress;
         private System.Windows.Forms.TextBox tbAdress;
-        private System.Windows.Forms.TextBox tbCompany;
         private System.Windows.Forms.CheckBox cbFamily;
         private System.Windows.Forms.CheckBox cbFriend;
         private System.Windows.Forms.CheckBox cbWork;
@@ -321,6 +321,7 @@ namespace AddressBook {
         private System.Windows.Forms.OpenFileDialog ofdFileOpenDialog;
         private System.Windows.Forms.Button btUpdate;
         private System.Windows.Forms.Button btDel;
+        private System.Windows.Forms.ComboBox cbCompany;
     }
 }
 

@@ -49,16 +49,33 @@ namespace AddressBook {
         }
 
         private void btAddPerson_Click (object sender, EventArgs e) {
+
+            if(String.IsNullOrWhiteSpace(tbName.Text)) {
+                MessageBox.Show ("氏名が入力されてません");
+                return;
+            }
+
             Person newPerson = new Person {
 
                 Name = tbName.Text,
                 MailAddress = tbMainAddress.Text,
                 Adress = tbAdress.Text,
-                Company = tbCompany.Text,
+                Company = cbCompany.Text,
                 Picture = pbPicture.Image,
                 listGroup = GetChckBoxGroup(),
             };
             listPerson.Add (newPerson);
+
+            if (listPerson.Count () > 0) {
+                btDel.Enabled = true;
+                btUpdate.Enabled = true;
+            }
+            //コンボボックスに会社名を登録
+
+            if (!cbCompany.Items.Contains(cbCompany.Text)) {
+                cbCompany.Items.Add (cbCompany.Text);
+            }
+            
         }
 
         //チェックボックスにセットされている値をリストとして取り出す
@@ -103,7 +120,7 @@ namespace AddressBook {
             tbName.Text = listPerson[getIndex].Name;
             tbMainAddress.Text = listPerson[getIndex].MailAddress;
             tbAdress.Text = listPerson[getIndex].Adress;
-            tbCompany.Text = listPerson[getIndex].Company;
+            cbCompany.Text = listPerson[getIndex].Company;
             pbPicture.Image = listPerson[getIndex].Picture;
             
             groupChekBoxClear ();
@@ -144,7 +161,7 @@ namespace AddressBook {
             listPerson[getIndex].Name = tbName.Text;
             listPerson[getIndex].MailAddress = tbMainAddress.Text;
             listPerson[getIndex].Adress = tbAdress.Text;
-            listPerson[getIndex].Company = tbCompany.Text;
+            listPerson[getIndex].Company = cbCompany.Text;
             listPerson[getIndex].Picture = pbPicture.Image;
             listPerson[getIndex].listGroup = GetChckBoxGroup ();
             dgvPrersons.Refresh (); // データグリットビュー更新
@@ -152,10 +169,9 @@ namespace AddressBook {
 
         private void btDel_Click (object sender, EventArgs e) {
 
-            var getIndex = dgvPrersons.CurrentRow.Index;
-            listPerson.RemoveAt (getIndex);
+            listPerson.RemoveAt (dgvPrersons.CurrentRow.Index);
 
-            if (listPerson.Count() == 0) {
+            if (listPerson.Count () == 0) {
                 btDel.Enabled = false;
                 btUpdate.Enabled = false;
             }
