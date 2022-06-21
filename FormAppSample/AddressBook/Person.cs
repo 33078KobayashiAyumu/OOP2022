@@ -18,6 +18,8 @@ namespace AddressBook {
         [System.ComponentModel.DisplayName ("かいしゃ")]
         public string Company { get; set; }
         public List<GroupType> listGroup { get; set; }
+        [System.ComponentModel.DisplayName ("とうろくび")]
+        public DateTime Registration { get; set; }
         [System.ComponentModel.DisplayName ("しゃしん")]
         public Image Picture { get; set; }
 

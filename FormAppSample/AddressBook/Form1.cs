@@ -65,13 +65,12 @@ namespace AddressBook {
                 Adress = tbAdress.Text,
                 Company = cbCompany.Text,
                 Picture = pbPicture.Image,
+                Registration = dateTime.Value,
                 listGroup = GetChckBoxGroup (),
             };
             listPerson.Add (newPerson);
 
             EnabledCheck ();
-
-
 
             setCbCompany (cbCompany.Text);
 
@@ -169,6 +168,7 @@ namespace AddressBook {
             listPerson[getIndex].Adress = tbAdress.Text;
             listPerson[getIndex].Company = cbCompany.Text;
             listPerson[getIndex].Picture = pbPicture.Image;
+            listPerson[getIndex].Registration = dateTime.Value;
             listPerson[getIndex].listGroup = GetChckBoxGroup ();
             dgvPrersons.Refresh (); // データグリットビュー更新
         }
