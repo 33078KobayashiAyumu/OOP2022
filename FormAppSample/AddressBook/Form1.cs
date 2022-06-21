@@ -50,6 +50,7 @@ namespace AddressBook {
             }
         }
 
+        //追加ボタンをクリックした時の処理
         private void btAddPerson_Click (object sender, EventArgs e) {
 
             if (String.IsNullOrWhiteSpace (tbName.Text)) {
@@ -68,11 +69,9 @@ namespace AddressBook {
             };
             listPerson.Add (newPerson);
 
-            if (listPerson.Count () > 0) {
-                btDel.Enabled = true;
-                btUpdate.Enabled = true;
-            }
-            
+            EnabledCheck ();
+
+
 
             setCbCompany (cbCompany.Text);
 
@@ -82,7 +81,7 @@ namespace AddressBook {
         private void setCbCompany (string company) {
             if (!cbCompany.Items.Contains (company)) {
                 //登録されていないとき処理
-                cbCompany.Items.Add (cbCompany.Text);
+                cbCompany.Items.Add (company);
             }
         }
 
@@ -161,7 +160,7 @@ namespace AddressBook {
 
         
 
-        // 更新ボタンが押された時の処理
+        //更新ボタンが押された時の処理
         private void btUpdate_Click (object sender, EventArgs e) {
 
             var getIndex = dgvPrersons.CurrentRow.Index;
@@ -175,18 +174,21 @@ namespace AddressBook {
             dgvPrersons.Refresh (); // データグリットビュー更新
         }
 
+        //削除ボタンが押された時の処理
         private void btDel_Click (object sender, EventArgs e) {
 
             listPerson.RemoveAt (dgvPrersons.CurrentRow.Index);
 
-            if (listPerson.Count () == 0) {
-                btDel.Enabled = false;
-                btUpdate.Enabled = false;
-            }
+            EnabledCheck ();
         }
+        
+        //更新・削除ボタンのマスク処理を行う（マスク判定込み）
+        private void EnabledCheck () {
+            btDel.Enabled = btUpdate.Enabled =  listPerson.Count () > 0 ? true : false;
+        }
+
         private void Form1_Load (object sender, EventArgs e) {
-            btDel.Enabled = false;
-            btUpdate.Enabled = false;
+            EnabledCheck ();
         }
 
         //保存ボタンのイベントハンドラ
@@ -206,27 +208,29 @@ namespace AddressBook {
             }
         }
 
+        //開くボタンのイベントハンドラ
         private void btOpen_Click (object sender, EventArgs e) {
             if (ofdFileOpenDialog.ShowDialog() == DialogResult.OK) {
                 try {
                     //バイナリ形式で逆シリアル化
                     var bf = new BinaryFormatter ();
 
-                    using (FileStream fs = File.Open(ofdFileOpenDialog.FileName,FileMode.Open,FileAccess.Read)) {
+                    using (FileStream fs = File.Open (ofdFileOpenDialog.FileName, FileMode.Open, FileAccess.Read)) {
                         //逆シリアル化して読み込む
                         listPerson = (BindingList<Person>)bf.Deserialize (fs);
                         dgvPrersons.DataSource = null;
                         dgvPrersons.DataSource = listPerson;
-                        
+
                     }
                 } catch (Exception ex) {
                     MessageBox.Show (ex.Message);
 
                 }
-                foreach (var item in listPerson.Select(p =>p.Company)) {
+                foreach (var item in listPerson.Select (p => p.Company)) {
                     //存在する会社を登録
                     setCbCompany (item);
                 }
+                EnabledCheck ();
             }
         }
     }
