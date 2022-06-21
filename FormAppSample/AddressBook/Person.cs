@@ -17,6 +17,18 @@ namespace AddressBook {
         public string Adress { get; set; }
         [System.ComponentModel.DisplayName ("かいしゃ")]
         public string Company { get; set; }
+        [System.ComponentModel.DisplayName ("ぐるーぷ")]
+
+        public string Group {
+            get {
+                string groups = "";
+                foreach (GroupType group in listGroup) {
+                    groups += "{" + group + "}";
+                }
+                return groups;
+            }
+        }
+
         public List<GroupType> listGroup { get; set; }
         [System.ComponentModel.DisplayName ("とうろくび")]
         public DateTime Registration { get; set; }
