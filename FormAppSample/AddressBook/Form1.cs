@@ -79,6 +79,7 @@ namespace AddressBook {
 
         //コンボボックスに会社名を登録
         private void setCbCompany (string company) {
+
             if (!cbCompany.Items.Contains (company)) {
                 //登録されていないとき処理
                 cbCompany.Items.Add (company);
@@ -107,8 +108,6 @@ namespace AddressBook {
 
         }
 
-
-        
         private void dgvPrersons_CellClick (object sender, DataGridViewCellEventArgs e) {
             
         }
@@ -226,6 +225,7 @@ namespace AddressBook {
                     MessageBox.Show (ex.Message);
 
                 }
+                cbCompany.Items.Clear ();
                 foreach (var item in listPerson.Select (p => p.Company)) {
                     //存在する会社を登録
                     setCbCompany (item);
