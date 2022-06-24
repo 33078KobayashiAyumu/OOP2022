@@ -46,7 +46,7 @@ namespace AddressBook {
 
         private void btPictureOpen_Click (object sender, EventArgs e) {
             if (ofdFileOpenDialog.ShowDialog () == DialogResult.OK) {
-                pbPicture.Image = Image.FromFile(ofdFileOpenDialog.FileName);
+                pbPicture.Image = Image.FromFile (ofdFileOpenDialog.FileName);
             }
         }
 
@@ -66,6 +66,8 @@ namespace AddressBook {
                 Company = cbCompany.Text,
                 Picture = pbPicture.Image,
                 Registration = dtp.Value,
+                KindNumber = GetRadioButtonKindNumber(),
+                TelNumber = tbTelNumber.Text,
                 listGroup = GetChckBoxGroup (),
             };
             listPerson.Add (newPerson);
@@ -74,6 +76,19 @@ namespace AddressBook {
 
             setCbCompany (cbCompany.Text);
 
+        }
+
+        private Person.KindNumberType GetRadioButtonKindNumber () {
+
+            //デフォルトの戻り値を設定
+            var selectedKindNumber = Person.KindNumberType.その他;
+            if (rbHome.Checked) {  //自宅にチェックがついている
+                selectedKindNumber = Person.KindNumberType.自宅;
+            }
+            if(rbMoble.Checked){  //携帯にチェックがついている
+                selectedKindNumber = Person.KindNumberType.携帯;
+            }
+            return selectedKindNumber;
         }
 
         //コンボボックスに会社名を登録
@@ -94,7 +109,7 @@ namespace AddressBook {
             if (cbFriend.Checked) {
                 listGroup.Add (Person.GroupType.友人);
             }
-            if (cbOther.Checked){
+            if (cbOther.Checked) {
                 listGroup.Add (Person.GroupType.仕事);
             }
             if (cbOther.Checked) {
@@ -108,7 +123,7 @@ namespace AddressBook {
         }
 
         private void dgvPrersons_CellClick (object sender, DataGridViewCellEventArgs e) {
-            
+
         }
 
         private void groupChekBoxClear () {
@@ -119,17 +134,41 @@ namespace AddressBook {
         //データグリットビューがクリックされたときのイベントハンドラ
         private void dgvPrersons_Click (object sender, EventArgs e) {
             if (dgvPrersons.CurrentRow == null) return;
-            
+
             var getIndex = dgvPrersons.CurrentRow.Index;
-            
+
             tbName.Text = listPerson[getIndex].Name;
             tbMainAddress.Text = listPerson[getIndex].MailAddress;
             tbAdress.Text = listPerson[getIndex].Adress;
             cbCompany.Text = listPerson[getIndex].Company;
             pbPicture.Image = listPerson[getIndex].Picture;
-
+            tbTelNumber.Text = listPerson[getIndex].TelNumber;
             dtp.Value =
-                listPerson[getIndex].Registration.Year > 1900 ? listPerson[getIndex].Registration:DateTime.Today;
+                listPerson[getIndex].Registration.Year > 1900 ?
+                listPerson[getIndex].Registration : DateTime.Today;
+
+            setGroupType (getIndex); //グループ設定
+
+            setKindNumberType (getIndex); //番号種別設定
+        }
+
+        private void setKindNumberType (int getIndex) {
+            //番号種別チェック
+            switch (listPerson[getIndex].KindNumber) {
+                case Person.KindNumberType.自宅:
+                    rbHome.Checked = true;
+                    break;
+                case Person.KindNumberType.携帯:
+                    rbMoble.Checked = true;
+                    break;
+                case Person.KindNumberType.その他:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void setGroupType (int getIndex) {
             groupChekBoxClear ();
 
             foreach (var group in listPerson[getIndex].listGroup) {
@@ -150,15 +189,13 @@ namespace AddressBook {
                         break;
                 }
             }
-            
-            
         }
 
         private void dgvPrersons_MouseClick (object sender, MouseEventArgs e) {
-            
+
         }
 
-        
+
 
         //更新ボタンが押された時の処理
         private void btUpdate_Click (object sender, EventArgs e) {
@@ -172,6 +209,7 @@ namespace AddressBook {
             listPerson[getIndex].Picture = pbPicture.Image;
             listPerson[getIndex].Registration = dtp.Value;
             listPerson[getIndex].listGroup = GetChckBoxGroup ();
+            listPerson[getIndex].KindNumber = GetRadioButtonKindNumber();
             dgvPrersons.Refresh (); // データグリットビュー更新
         }
 
@@ -182,10 +220,10 @@ namespace AddressBook {
 
             EnabledCheck ();
         }
-        
+
         //更新・削除ボタンのマスク処理を行う（マスク判定込み）
         private void EnabledCheck () {
-            btDel.Enabled = btUpdate.Enabled =  listPerson.Count () > 0 ? true : false;
+            btDel.Enabled = btUpdate.Enabled = listPerson.Count () > 0 ? true : false;
         }
 
         private void Form1_Load (object sender, EventArgs e) {
@@ -199,7 +237,7 @@ namespace AddressBook {
                     //バイナリ形式でシリアル化
                     var bf = new BinaryFormatter ();
 
-                    using (FileStream fs = File.Open(sfdSaveDialog.FileName,FileMode.Create)) {
+                    using (FileStream fs = File.Open (sfdSaveDialog.FileName, FileMode.Create)) {
                         bf.Serialize (fs, listPerson);
                     }
 
@@ -211,7 +249,7 @@ namespace AddressBook {
 
         //開くボタンのイベントハンドラ
         private void btOpen_Click (object sender, EventArgs e) {
-            if (ofdFileOpenDialog.ShowDialog() == DialogResult.OK) {
+            if (ofdFileOpenDialog.ShowDialog () == DialogResult.OK) {
                 try {
                     //バイナリ形式で逆シリアル化
                     var bf = new BinaryFormatter ();
@@ -235,5 +273,10 @@ namespace AddressBook {
                 EnabledCheck ();
             }
         }
+
+        private void groupBox1_Enter (object sender, EventArgs e) { 
+        }
+   
     }
 }
+
