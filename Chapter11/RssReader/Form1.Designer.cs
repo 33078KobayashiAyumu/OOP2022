@@ -27,7 +27,10 @@ namespace RssReader {
             this.btRssGet = new System.Windows.Forms.Button();
             this.cbRssUrl = new System.Windows.Forms.ComboBox();
             this.lbRssTitle = new System.Windows.Forms.ListBox();
-            this.wbBrowser = new System.Windows.Forms.WebBrowser();
+            this.btBack = new System.Windows.Forms.Button();
+            this.btForward = new System.Windows.Forms.Button();
+            this.wvBrowser = new Microsoft.Toolkit.Forms.UI.Controls.WebView();
+            ((System.ComponentModel.ISupportInitialize)(this.wvBrowser)).BeginInit();
             this.SuspendLayout();
             // 
             // btRssGet
@@ -43,9 +46,9 @@ namespace RssReader {
             // cbRssUrl
             // 
             this.cbRssUrl.FormattingEnabled = true;
-            this.cbRssUrl.Location = new System.Drawing.Point(12, 10);
+            this.cbRssUrl.Location = new System.Drawing.Point(131, 10);
             this.cbRssUrl.Name = "cbRssUrl";
-            this.cbRssUrl.Size = new System.Drawing.Size(806, 20);
+            this.cbRssUrl.Size = new System.Drawing.Size(687, 20);
             this.cbRssUrl.TabIndex = 2;
             // 
             // lbRssTitle
@@ -59,26 +62,51 @@ namespace RssReader {
             this.lbRssTitle.TabIndex = 3;
             this.lbRssTitle.Click += new System.EventHandler(this.lbRssTitle_Click);
             // 
-            // wbBrowser
+            // btBack
             // 
-            this.wbBrowser.Location = new System.Drawing.Point(12, 239);
-            this.wbBrowser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.wbBrowser.Name = "wbBrowser";
-            this.wbBrowser.ScriptErrorsSuppressed = true;
-            this.wbBrowser.Size = new System.Drawing.Size(887, 461);
-            this.wbBrowser.TabIndex = 4;
+            this.btBack.Location = new System.Drawing.Point(12, 8);
+            this.btBack.Name = "btBack";
+            this.btBack.Size = new System.Drawing.Size(48, 23);
+            this.btBack.TabIndex = 5;
+            this.btBack.Text = "←";
+            this.btBack.UseVisualStyleBackColor = true;
+            this.btBack.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btForward
+            // 
+            this.btForward.Location = new System.Drawing.Point(67, 8);
+            this.btForward.Name = "btForward";
+            this.btForward.Size = new System.Drawing.Size(48, 23);
+            this.btForward.TabIndex = 5;
+            this.btForward.Text = "→";
+            this.btForward.UseVisualStyleBackColor = true;
+            this.btForward.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // wvBrowser
+            // 
+            this.wvBrowser.Location = new System.Drawing.Point(12, 239);
+            this.wvBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.wvBrowser.Name = "wvBrowser";
+            this.wvBrowser.Size = new System.Drawing.Size(887, 397);
+            this.wvBrowser.Source = new System.Uri("https://www.yahoo.co.jp/", System.UriKind.Absolute);
+            this.wvBrowser.TabIndex = 6;
+            this.wvBrowser.NavigationCompleted += new System.EventHandler<Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationCompletedEventArgs>(this.wvBrowser_NavigationCompleted);
             // 
             // RSSReader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(911, 712);
-            this.Controls.Add(this.wbBrowser);
+            this.Controls.Add(this.wvBrowser);
+            this.Controls.Add(this.btForward);
+            this.Controls.Add(this.btBack);
             this.Controls.Add(this.lbRssTitle);
             this.Controls.Add(this.cbRssUrl);
             this.Controls.Add(this.btRssGet);
             this.Name = "RSSReader";
             this.Text = "RSSReader";
+            this.Load += new System.EventHandler(this.RSSReader_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.wvBrowser)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -87,7 +115,9 @@ namespace RssReader {
         private System.Windows.Forms.Button btRssGet;
         private System.Windows.Forms.ComboBox cbRssUrl;
         private System.Windows.Forms.ListBox lbRssTitle;
-        private System.Windows.Forms.WebBrowser wbBrowser;
+        private System.Windows.Forms.Button btBack;
+        private System.Windows.Forms.Button btForward;
+        private Microsoft.Toolkit.Forms.UI.Controls.WebView wvBrowser;
     }
 }
 

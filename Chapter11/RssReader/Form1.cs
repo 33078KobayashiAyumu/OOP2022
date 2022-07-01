@@ -12,7 +12,7 @@ using System.Xml.Linq;
 
 namespace RssReader {
     public partial class RSSReader : Form {
-        IEnumerable<string> xTitle, xlink;
+
         List<string> linklist = new List<string> ();
         public RSSReader () {
             InitializeComponent ();
@@ -22,12 +22,17 @@ namespace RssReader {
 
         private void btRssGet_Click (object sender, EventArgs e) {
             using (var wc = new WebClient ()) {
-                var stream = wc.OpenRead ("https://news.yahoo.co.jp/rss/categories/business.xml");
+                if (String.IsNullOrWhiteSpace (cbRssUrl.Text)) {
+                    MessageBox.Show ("error");
+                    return;
+                }
+
+                var stream = wc.OpenRead (cbRssUrl.Text);
 
                 var xdoc = XDocument.Load (stream);
-                xTitle = xdoc.Root.Descendants ("item").Select (x =>(string)x.Element ("title"));
-                xlink = xdoc.Root.Descendants ("item").Select (x => (string)x.Element ("link"));
-
+                var xTitle = xdoc.Root.Descendants ("item").Select (x =>(string)x.Element ("title"));
+                var xlink = xdoc.Root.Descendants ("item").Select (x => (string)x.Element ("link"));
+                lbRssTitle.Items.Clear ();
                 foreach (var data in xTitle) {
                     lbRssTitle.Items.Add(data);
                 }
@@ -39,9 +44,26 @@ namespace RssReader {
 
         private void lbRssTitle_Click (object sender, EventArgs e) {
             var index = lbRssTitle.SelectedIndex;
-            foreach (var link in xTitle) {
-                
-            }
+            //wbBrowser.Navigate (linklist[index]);
+            wvBrowser.Source = new Uri (linklist[index]);
+        }
+        
+        private void button1_Click (object sender, EventArgs e) {
+                wvBrowser.GoBack ();
+        }
+
+        private void button2_Click (object sender, EventArgs e) {
+                wvBrowser.GoForward ();
+        }
+
+        private void RSSReader_Load (object sender, EventArgs e) {
+            btBack.Enabled = wvBrowser.CanGoBack;
+            btForward.Enabled = wvBrowser.CanGoForward;
+        }
+
+        private void wvBrowser_NavigationCompleted (object sender, Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationCompletedEventArgs e) {
+            btBack.Enabled = wvBrowser.CanGoBack;
+            btForward.Enabled = wvBrowser.CanGoForward;
         }
     }
 }
