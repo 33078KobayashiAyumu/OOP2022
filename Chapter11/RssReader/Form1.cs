@@ -45,6 +45,7 @@ namespace RssReader {
         private void lbRssTitle_Click (object sender, EventArgs e) {
             var index = lbRssTitle.SelectedIndex;
             //wbBrowser.Navigate (linklist[index]);
+            if (index == -1) return;
             wvBrowser.Source = new Uri (linklist[index]);
         }
         
@@ -57,13 +58,16 @@ namespace RssReader {
         }
 
         private void RSSReader_Load (object sender, EventArgs e) {
+            MaskCheck ();
+        }
+
+        private void MaskCheck () {
             btBack.Enabled = wvBrowser.CanGoBack;
             btForward.Enabled = wvBrowser.CanGoForward;
         }
 
         private void wvBrowser_NavigationCompleted (object sender, Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationCompletedEventArgs e) {
-            btBack.Enabled = wvBrowser.CanGoBack;
-            btForward.Enabled = wvBrowser.CanGoForward;
+            MaskCheck ();
         }
     }
 }

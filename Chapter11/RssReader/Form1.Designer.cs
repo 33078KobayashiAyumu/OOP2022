@@ -53,6 +53,9 @@ namespace RssReader {
             // 
             // lbRssTitle
             // 
+            this.lbRssTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbRssTitle.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.lbRssTitle.FormattingEnabled = true;
             this.lbRssTitle.ItemHeight = 12;
@@ -84,10 +87,13 @@ namespace RssReader {
             // 
             // wvBrowser
             // 
+            this.wvBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.wvBrowser.Location = new System.Drawing.Point(12, 239);
             this.wvBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.wvBrowser.Name = "wvBrowser";
-            this.wvBrowser.Size = new System.Drawing.Size(887, 397);
+            this.wvBrowser.Size = new System.Drawing.Size(887, 461);
             this.wvBrowser.Source = new System.Uri("https://www.yahoo.co.jp/", System.UriKind.Absolute);
             this.wvBrowser.TabIndex = 6;
             this.wvBrowser.NavigationCompleted += new System.EventHandler<Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationCompletedEventArgs>(this.wvBrowser_NavigationCompleted);
