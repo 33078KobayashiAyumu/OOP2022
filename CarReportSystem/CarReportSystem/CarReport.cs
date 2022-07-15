@@ -4,8 +4,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static AddressBook.Person;
 
 namespace CarReportSystem {
+    [Serializable]
     public class CarReport {
         [System.ComponentModel.DisplayName ("日付")]
         public DateTime Date { get; set; }  //日付
@@ -19,10 +21,6 @@ namespace CarReportSystem {
         public string Report { get; set; } //レポート
         [System.ComponentModel.DisplayName ("画像")]
         public Image Picture { get; set; } //画像
-
-
-        public DateTime Registration { get; set; }
-
 
         //メーカー
         public enum MakerGroup {
