@@ -394,7 +394,7 @@ namespace CarReportSystem {
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(23, 23);
             this.button1.TabIndex = 4;
-            this.button1.Text = "a";
+            this.button1.Text = "☆";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.a_Click);
             // 
@@ -435,6 +435,7 @@ namespace CarReportSystem {
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarReportSys)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbBox)).EndInit();

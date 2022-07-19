@@ -5,18 +5,23 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace CarReportSystem {
     public partial class Form1 : Form {
+        Settings settings = new Settings();
         int mode = 0;
         BindingList<CarReport> listCarReport = new BindingList<CarReport> ();
         public Form1 () {
             InitializeComponent ();
             dgvCarReportSys.DataSource = listCarReport;
+            colorDialog1.Color = settings.MainFormColor;
         }
 
         private void btEnd_Click (object sender, EventArgs e) {
@@ -141,12 +146,12 @@ namespace CarReportSystem {
                 }
                 cmbCarName.Items.Clear ();
                 foreach (var item in listCarReport.Select (p => p.CarName)) {
-                    //存在する会社を登録
+                    
                      setCarName(item);
                 }
                 cmbRec.Items.Clear ();
                 foreach (var item in listCarReport.Select (p => p.Auther)) {
-                    //存在する会社を登録
+                    
                     setAuther (item);
                 }
                 EnabledCheck ();
@@ -154,6 +159,11 @@ namespace CarReportSystem {
         }
 
         private void Form1_Load (object sender, EventArgs e) {
+            using (XmlReader read = XmlReader.Create ("Setting.xml")) {
+                var serializer = new XmlSerializer (typeof (Settings));
+                settings = serializer.Deserialize (read) as Settings;
+                BackColor = settings.MainFormColor;
+            }
             EnabledCheck ();
         }
 
@@ -205,12 +215,21 @@ namespace CarReportSystem {
         private void 色設定ToolStripMenuItem_Click (object sender, EventArgs e) {
             if(colorDialog1.ShowDialog () == DialogResult.OK) {
                 BackColor = colorDialog1.Color;
+                settings.MainFormColor = colorDialog1.Color;
             }
         }
 
         private void a_Click (object sender, EventArgs e) {
             pbBox.SizeMode = (PictureBoxSizeMode)mode;
             mode = mode < 4 ? ++mode : 0;
+        }
+
+        private void Form1_FormClosed (object sender, FormClosedEventArgs e) {
+            using (var write = XmlWriter.Create ("Setting.xml")) {
+                var serializer = new XmlSerializer (settings.GetType ());
+                serializer.Serialize (write,settings);
+            }
+            
         }
     }
 }
