@@ -21,7 +21,6 @@ namespace CarReportSystem {
         public Form1 () {
             InitializeComponent ();
             dgvCarReportSys.DataSource = listCarReport;
-            colorDialog1.Color = settings.MainFormColor;
         }
 
         private void btEnd_Click (object sender, EventArgs e) {
@@ -30,6 +29,10 @@ namespace CarReportSystem {
 
 
         private void btAdd_Click (object sender, EventArgs e) {
+            if (String.IsNullOrWhiteSpace (cmbRec.Text)) {
+                MessageBox.Show ("氏名が入力されてません");
+                return;
+            }
             CarReport newCarReport = new CarReport {
                 Date = dtp.Value,
                 Auther = cmbRec.Text,
@@ -85,7 +88,7 @@ namespace CarReportSystem {
         }
 
         private void dgv_Click (object sender, EventArgs e) {
-            if (dgvCarReportSys == null) return;
+            if (dgvCarReportSys.CurrentRow == null) return;
 
             var index = dgvCarReportSys.CurrentRow.Index;
             cmbRec.Text = listCarReport[index].Auther;
@@ -159,10 +162,11 @@ namespace CarReportSystem {
         }
 
         private void Form1_Load (object sender, EventArgs e) {
-            using (XmlReader read = XmlReader.Create ("Setting.xml")) {
+            using (var read = XmlReader.Create ("Setting.xml")) {
                 var serializer = new XmlSerializer (typeof (Settings));
                 settings = serializer.Deserialize (read) as Settings;
-                BackColor = settings.MainFormColor;
+                BackColor = Color.FromArgb(settings.MainFormColor);
+
             }
             EnabledCheck ();
         }
@@ -215,7 +219,7 @@ namespace CarReportSystem {
         private void 色設定ToolStripMenuItem_Click (object sender, EventArgs e) {
             if(colorDialog1.ShowDialog () == DialogResult.OK) {
                 BackColor = colorDialog1.Color;
-                settings.MainFormColor = colorDialog1.Color;
+                settings.MainFormColor = colorDialog1.Color.ToArgb();
             }
         }
 

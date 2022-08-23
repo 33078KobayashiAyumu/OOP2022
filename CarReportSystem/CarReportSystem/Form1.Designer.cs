@@ -33,8 +33,6 @@ namespace CarReportSystem {
             this.label5 = new System.Windows.Forms.Label();
             this.dtp = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
-            this.btArOpen = new System.Windows.Forms.Button();
-            this.btArSave = new System.Windows.Forms.Button();
             this.dgvCarReportSys = new System.Windows.Forms.DataGridView();
             this.txtReport = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -44,7 +42,6 @@ namespace CarReportSystem {
             this.btFix = new System.Windows.Forms.Button();
             this.btDelete = new System.Windows.Forms.Button();
             this.btAdd = new System.Windows.Forms.Button();
-            this.btEnd = new System.Windows.Forms.Button();
             this.cbT = new System.Windows.Forms.RadioButton();
             this.cbN = new System.Windows.Forms.RadioButton();
             this.cbH = new System.Windows.Forms.RadioButton();
@@ -143,41 +140,22 @@ namespace CarReportSystem {
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label6.Location = new System.Drawing.Point(78, 413);
+            this.label6.Location = new System.Drawing.Point(79, 373);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(75, 15);
             this.label6.TabIndex = 1;
             this.label6.Text = "記事一覧：";
             // 
-            // btArOpen
-            // 
-            this.btArOpen.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btArOpen.Location = new System.Drawing.Point(80, 448);
-            this.btArOpen.Name = "btArOpen";
-            this.btArOpen.Size = new System.Drawing.Size(75, 23);
-            this.btArOpen.TabIndex = 4;
-            this.btArOpen.Text = "開く";
-            this.btArOpen.UseVisualStyleBackColor = true;
-            this.btArOpen.Click += new System.EventHandler(this.btArOpen_Click);
-            // 
-            // btArSave
-            // 
-            this.btArSave.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btArSave.Location = new System.Drawing.Point(79, 477);
-            this.btArSave.Name = "btArSave";
-            this.btArSave.Size = new System.Drawing.Size(75, 23);
-            this.btArSave.TabIndex = 4;
-            this.btArSave.Text = "保存";
-            this.btArSave.UseVisualStyleBackColor = true;
-            this.btArSave.Click += new System.EventHandler(this.btArSave_Click);
-            // 
             // dgvCarReportSys
             // 
             this.dgvCarReportSys.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCarReportSys.Location = new System.Drawing.Point(160, 403);
+            this.dgvCarReportSys.Location = new System.Drawing.Point(12, 403);
+            this.dgvCarReportSys.MultiSelect = false;
             this.dgvCarReportSys.Name = "dgvCarReportSys";
+            this.dgvCarReportSys.ReadOnly = true;
             this.dgvCarReportSys.RowTemplate.Height = 21;
-            this.dgvCarReportSys.Size = new System.Drawing.Size(789, 255);
+            this.dgvCarReportSys.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvCarReportSys.Size = new System.Drawing.Size(937, 255);
             this.dgvCarReportSys.TabIndex = 5;
             this.dgvCarReportSys.Click += new System.EventHandler(this.dgv_Click);
             // 
@@ -257,17 +235,6 @@ namespace CarReportSystem {
             this.btAdd.Text = "追加";
             this.btAdd.UseVisualStyleBackColor = true;
             this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
-            // 
-            // btEnd
-            // 
-            this.btEnd.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btEnd.Location = new System.Drawing.Point(79, 635);
-            this.btEnd.Name = "btEnd";
-            this.btEnd.Size = new System.Drawing.Size(75, 23);
-            this.btEnd.TabIndex = 4;
-            this.btEnd.Text = "終了";
-            this.btEnd.UseVisualStyleBackColor = true;
-            this.btEnd.Click += new System.EventHandler(this.btEnd_Click);
             // 
             // cbT
             // 
@@ -363,28 +330,28 @@ namespace CarReportSystem {
             // 開くToolStripMenuItem
             // 
             this.開くToolStripMenuItem.Name = "開くToolStripMenuItem";
-            this.開くToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.開くToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.開くToolStripMenuItem.Text = "開く...";
             this.開くToolStripMenuItem.Click += new System.EventHandler(this.開くToolStripMenuItem_Click);
             // 
             // 保存ToolStripMenuItem
             // 
             this.保存ToolStripMenuItem.Name = "保存ToolStripMenuItem";
-            this.保存ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.保存ToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.保存ToolStripMenuItem.Text = "保存...";
             this.保存ToolStripMenuItem.Click += new System.EventHandler(this.保存ToolStripMenuItem_Click);
             // 
             // 終了ToolStripMenuItem
             // 
             this.終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
-            this.終了ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.終了ToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.終了ToolStripMenuItem.Text = "色設定..";
             this.終了ToolStripMenuItem.Click += new System.EventHandler(this.色設定ToolStripMenuItem_Click);
             // 
             // 終了ToolStripMenuItem1
             // 
             this.終了ToolStripMenuItem1.Name = "終了ToolStripMenuItem1";
-            this.終了ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.終了ToolStripMenuItem1.Size = new System.Drawing.Size(116, 22);
             this.終了ToolStripMenuItem1.Text = "終了...";
             this.終了ToolStripMenuItem1.Click += new System.EventHandler(this.終了ToolStripMenuItem1_Click);
             // 
@@ -412,15 +379,12 @@ namespace CarReportSystem {
             this.Controls.Add(this.pbBox);
             this.Controls.Add(this.txtReport);
             this.Controls.Add(this.dgvCarReportSys);
-            this.Controls.Add(this.btEnd);
-            this.Controls.Add(this.btArSave);
             this.Controls.Add(this.btImgOpen);
             this.Controls.Add(this.btAdd);
             this.Controls.Add(this.btDelete);
             this.Controls.Add(this.btFix);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btimgDelete);
-            this.Controls.Add(this.btArOpen);
             this.Controls.Add(this.dtp);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label6);
@@ -457,8 +421,6 @@ namespace CarReportSystem {
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker dtp;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button btArOpen;
-        private System.Windows.Forms.Button btArSave;
         private System.Windows.Forms.DataGridView dgvCarReportSys;
         private System.Windows.Forms.TextBox txtReport;
         private System.Windows.Forms.Label label7;
@@ -468,7 +430,6 @@ namespace CarReportSystem {
         private System.Windows.Forms.Button btFix;
         private System.Windows.Forms.Button btDelete;
         private System.Windows.Forms.Button btAdd;
-        private System.Windows.Forms.Button btEnd;
         private System.Windows.Forms.RadioButton cbT;
         private System.Windows.Forms.RadioButton cbN;
         private System.Windows.Forms.RadioButton cbH;
