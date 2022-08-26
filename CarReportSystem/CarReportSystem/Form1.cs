@@ -15,7 +15,7 @@ using System.Xml.Serialization;
 
 namespace CarReportSystem {
     public partial class Form1 : Form {
-        Settings settings = new Settings();
+        Settings settings = Settings.getInstance();
         int mode = 0;
         BindingList<CarReport> listCarReport = new BindingList<CarReport> ();
         public Form1 () {
@@ -162,12 +162,17 @@ namespace CarReportSystem {
         }
 
         private void Form1_Load (object sender, EventArgs e) {
-            using (var read = XmlReader.Create ("Setting.xml")) {
-                var serializer = new XmlSerializer (typeof (Settings));
-                settings = serializer.Deserialize (read) as Settings;
-                BackColor = Color.FromArgb(settings.MainFormColor);
+            try {
+                using (var read = XmlReader.Create ("Setting.xml")) {
+                    var serializer = new XmlSerializer (typeof (Settings));
+                    settings = serializer.Deserialize (read) as Settings;
+                    BackColor = Color.FromArgb (settings.MainFormColor);
+                }
+            }
+            catch(Exception) {
 
             }
+                
             EnabledCheck ();
         }
 
