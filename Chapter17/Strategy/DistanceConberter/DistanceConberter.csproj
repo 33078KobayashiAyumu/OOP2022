@@ -43,10 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConberterBase.cs" />
+    <Compile Include="Framework\ConberterBase.cs" />
     <Compile Include="ConcreateConverter.cs" />
     <Compile Include="ConverterFactory.cs" />
-    <Compile Include="DistanceConverter.cs" />
+    <Compile Include="Framework\DistanceConverter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using DistanceConverter.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DistanceConberter {
+namespace DistanceConverter {
 
     public class MeterConverter : ConverterBase {
 
@@ -60,6 +61,7 @@ namespace DistanceConberter {
             return name.ToLower () == "mile" || name == UnitName;
         }
     }
+
     public class KmConverter : ConverterBase {
 
         protected override double Ratio => 1000;

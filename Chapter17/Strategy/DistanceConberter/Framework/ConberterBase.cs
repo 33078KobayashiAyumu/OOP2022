@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DistanceConberter {
+namespace DistanceConverter.Framework {
     public abstract class ConverterBase {
 
         public abstract bool IsMyUnit (string name);

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using DistanceConverter.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DistanceConberter {
+namespace DistanceConverter {
     static class ConverterFactory {
         //あらかじめインスタンスを生成し、配列に入れておく
         private static ConverterBase[] _converters = new ConverterBase[] {
