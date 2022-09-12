@@ -60,9 +60,9 @@ namespace AddressBook {
             this.ファイルFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.データベース接続ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.終了ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btRelieve = new System.Windows.Forms.Button();
             this.ヘルプHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.バージョン情報ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btRelieve = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.addressTableDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.infosys202229DataSet)).BeginInit();
@@ -357,27 +357,16 @@ namespace AddressBook {
             // データベース接続ToolStripMenuItem
             // 
             this.データベース接続ToolStripMenuItem.Name = "データベース接続ToolStripMenuItem";
-            this.データベース接続ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.データベース接続ToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.データベース接続ToolStripMenuItem.Text = "データベース接続";
             this.データベース接続ToolStripMenuItem.Click += new System.EventHandler(this.データベース接続ToolStripMenuItem_Click);
             // 
             // 終了ToolStripMenuItem
             // 
             this.終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
-            this.終了ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.終了ToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.終了ToolStripMenuItem.Text = "終了(&X)";
             this.終了ToolStripMenuItem.Click += new System.EventHandler(this.終了ToolStripMenuItem_Click);
-            // 
-            // btRelieve
-            // 
-            this.btRelieve.Enabled = false;
-            this.btRelieve.Location = new System.Drawing.Point(366, 285);
-            this.btRelieve.Name = "btRelieve";
-            this.btRelieve.Size = new System.Drawing.Size(75, 27);
-            this.btRelieve.TabIndex = 12;
-            this.btRelieve.Text = "検索解除";
-            this.btRelieve.UseVisualStyleBackColor = true;
-            this.btRelieve.Click += new System.EventHandler(this.btRelieve_Click);
             // 
             // ヘルプHToolStripMenuItem
             // 
@@ -390,9 +379,20 @@ namespace AddressBook {
             // バージョン情報ToolStripMenuItem
             // 
             this.バージョン情報ToolStripMenuItem.Name = "バージョン情報ToolStripMenuItem";
-            this.バージョン情報ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.バージョン情報ToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.バージョン情報ToolStripMenuItem.Text = "バージョン情報";
             this.バージョン情報ToolStripMenuItem.Click += new System.EventHandler(this.バージョン情報ToolStripMenuItem_Click);
+            // 
+            // btRelieve
+            // 
+            this.btRelieve.Enabled = false;
+            this.btRelieve.Location = new System.Drawing.Point(366, 285);
+            this.btRelieve.Name = "btRelieve";
+            this.btRelieve.Size = new System.Drawing.Size(75, 27);
+            this.btRelieve.TabIndex = 12;
+            this.btRelieve.Text = "検索解除";
+            this.btRelieve.UseVisualStyleBackColor = true;
+            this.btRelieve.Click += new System.EventHandler(this.btRelieve_Click);
             // 
             // Form1
             // 
