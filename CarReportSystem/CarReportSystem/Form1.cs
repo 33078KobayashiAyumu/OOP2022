@@ -29,7 +29,7 @@ namespace CarReportSystem {
         private void btAdd_Click (object sender, EventArgs e) {
             DataRow newRow = infosys202229DataSet.CarReportDB.NewRow ();
 
-            newRow[1] = dtp.Text;
+            newRow[1] = dtp.Value;
             newRow[2] = cmbRec.Text;
             newRow[3] = MakerChck();
             newRow[4] = cmbCarName.Text;
@@ -68,8 +68,8 @@ namespace CarReportSystem {
 
         private void btFix_Click (object sender, EventArgs e) {
             //各テキストボックスからデータグリッドビューに設定
-            carReportDBDataGridView.CurrentRow.Cells[1].Value = cmbRec.Text;
-            carReportDBDataGridView.CurrentRow.Cells[2].Value = dtp.Text;
+            carReportDBDataGridView.CurrentRow.Cells[1].Value = dtp.Value;
+            carReportDBDataGridView.CurrentRow.Cells[2].Value = cmbRec.Text; 
             carReportDBDataGridView.CurrentRow.Cells[3].Value = MakerChck ();
             carReportDBDataGridView.CurrentRow.Cells[4].Value = cmbCarName.Text;
             carReportDBDataGridView.CurrentRow.Cells[5].Value = txtReport.Text;
@@ -161,9 +161,9 @@ namespace CarReportSystem {
 
         private void carReportDBDataGridView_CellContentClick (object sender, DataGridViewCellEventArgs e) {
             //データグリッドビューの選択レコードを各テキストボックスに設定
-            dtp.Text = carReportDBDataGridView.CurrentRow.Cells[1].Value.ToString ();
+            dtp.Value = (DateTime)carReportDBDataGridView.CurrentRow.Cells[1].Value;
             cmbRec.Text = carReportDBDataGridView.CurrentRow.Cells[2].Value.ToString ();
-            MakerChck ();
+            MakerChckDB ();
             cmbCarName.Text = carReportDBDataGridView.CurrentRow.Cells[4].Value.ToString ();
             txtReport.Text = carReportDBDataGridView.CurrentRow.Cells[5].Value.ToString ();
 
@@ -171,6 +171,27 @@ namespace CarReportSystem {
                 pbBox.Image = ByteArrayToImage ((byte[])carReportDBDataGridView.CurrentRow.Cells[6].Value);
             } else {
                 pbBox.Image = null;
+            }
+        }
+
+        private void MakerChckDB () {
+            if ((string)carReportDBDataGridView.CurrentRow.Cells[3].Value == "トヨタ") {
+                cbT.Checked = true;
+            }
+            if ((string)carReportDBDataGridView.CurrentRow.Cells[3].Value == "日産") {
+                cbN.Checked = true;
+            }
+            if ((string)carReportDBDataGridView.CurrentRow.Cells[3].Value == "ホンダ") {
+                cbH.Checked = true;
+            }
+            if ((string)carReportDBDataGridView.CurrentRow.Cells[3].Value == "スバル") {
+                cbS.Checked = true;
+            }
+            if ((string)carReportDBDataGridView.CurrentRow.Cells[3].Value == "外国車") {
+                cbFC.Checked = true;
+            }
+            if ((string)carReportDBDataGridView.CurrentRow.Cells[3].Value == "その他") {
+                cbAther.Checked = true;
             }
         }
 
