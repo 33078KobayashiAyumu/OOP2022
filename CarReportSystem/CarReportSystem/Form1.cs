@@ -17,6 +17,7 @@ namespace CarReportSystem {
     public partial class Form1 : Form {
         Settings settings = Settings.getInstance();
         int mode = 0;
+        BindingList<CarReport> listCarReports = new BindingList<CarReport> ();
         public Form1 () {
             InitializeComponent ();
         }
@@ -40,6 +41,10 @@ namespace CarReportSystem {
             infosys202229DataSet.CarReportDB.Rows.Add (newRow);
             //データベース更新
             this.carReportDBTableAdapter.Update (this.infosys202229DataSet.CarReportDB);
+
+            setCmbRec (cmbRec.Text);
+
+            setCmbCarName (cmbCarName.Text);
         }
 
         private CarReport.MakerGroup MakerChck () {
@@ -144,6 +149,17 @@ namespace CarReportSystem {
         private void btConnect_Click (object sender, EventArgs e) {
             // TODO: このコード行はデータを 'infosys202229DataSet.CarReportDB' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
             this.carReportDBTableAdapter.Fill (this.infosys202229DataSet.CarReportDB);
+            cmbRec.Items.Clear ();    //コンボボックスのアイテム消去
+            cmbCarName.Items.Clear ();    //コンボボックスのアイテム消去
+                                          //コンボボックスへ新規登録
+
+
+            for (int i = 0; i < carReportDBDataGridView.Rows.Count; i++) {
+                setCmbRec (carReportDBDataGridView.Rows[i].Cells[2].Value.ToString ());
+                setCmbCarName (carReportDBDataGridView.Rows[i].Cells[4].Value.ToString ());
+            }
+
+
         }
         // バイト配列をImageオブジェクトに変換
         public static Image ByteArrayToImage (byte[] b) {
@@ -157,21 +173,6 @@ namespace CarReportSystem {
             ImageConverter imgconv = new ImageConverter ();
             byte[] b = (byte[])imgconv.ConvertTo (img, typeof (byte[]));
             return b;
-        }
-
-        private void carReportDBDataGridView_CellContentClick (object sender, DataGridViewCellEventArgs e) {
-            //データグリッドビューの選択レコードを各テキストボックスに設定
-            dtp.Value = (DateTime)carReportDBDataGridView.CurrentRow.Cells[1].Value;
-            cmbRec.Text = carReportDBDataGridView.CurrentRow.Cells[2].Value.ToString ();
-            MakerChckDB ();
-            cmbCarName.Text = carReportDBDataGridView.CurrentRow.Cells[4].Value.ToString ();
-            txtReport.Text = carReportDBDataGridView.CurrentRow.Cells[5].Value.ToString ();
-
-            if (!(carReportDBDataGridView.CurrentRow.Cells[6].Value is DBNull)) {
-                pbBox.Image = ByteArrayToImage ((byte[])carReportDBDataGridView.CurrentRow.Cells[6].Value);
-            } else {
-                pbBox.Image = null;
-            }
         }
 
         private void MakerChckDB () {
@@ -197,6 +198,71 @@ namespace CarReportSystem {
 
         private void carReportDBDataGridView_DataError (object sender, DataGridViewDataErrorEventArgs e) {
 
+        }
+
+        private void btSearch_Click (object sender, EventArgs e) {
+            this.carReportDBTableAdapter.FillByAutor (this.infosys202229DataSet.CarReportDB, tbSearch.Text);
+            Null_Check ();
+        }
+        private void Null_Check () {
+            if (tbSearch.Text == null) {
+                btRelieve.Enabled = false;
+            } else {
+                btRelieve.Enabled = true;
+            }
+        }
+
+        private void btRelieve_Click (object sender, EventArgs e) {
+            this.carReportDBTableAdapter.Fill (this.infosys202229DataSet.CarReportDB);
+            tbSearch.Text = null;
+        }
+
+        private void btClear_Click (object sender, EventArgs e) {
+            cmbRec.Text = null;
+            CheckClear ();
+            cmbCarName.Text = null;
+            txtReport.Text = null;
+            carReportDBDataGridView.ClearSelection ();
+        }
+        private void CheckClear () {
+            cbT.Checked = false;
+            cbN.Checked = false;
+            cbH.Checked = false;
+            cbS.Checked = false;
+            cbFC.Checked = false;
+            cbAther.Checked = false;
+        }
+        private void setCmbRec (string company) {
+            if (!cmbRec.Items.Contains (company)) {
+                //まだ登録されていなければ登録処理
+                cmbRec.Items.Add (company);
+            }
+        }
+        //コンボボックスに車名を登録する（重複なし）
+        private void setCmbCarName (string company) {
+            if (!cmbCarName.Items.Contains (company)) {
+                //まだ登録されていなければ登録処理
+                cmbCarName.Items.Add (company);
+            }
+        }
+
+        private void carReportDBDataGridView_CellContentClick (object sender, MouseEventArgs e) {
+            //データグリッドビューの選択レコードを各テキストボックスに設定
+            dtp.Value = (DateTime)carReportDBDataGridView.CurrentRow.Cells[1].Value;
+            cmbRec.Text = carReportDBDataGridView.CurrentRow.Cells[2].Value.ToString ();
+            MakerChckDB ();
+            cmbCarName.Text = carReportDBDataGridView.CurrentRow.Cells[4].Value.ToString ();
+            txtReport.Text = carReportDBDataGridView.CurrentRow.Cells[5].Value.ToString ();
+
+            if (!(carReportDBDataGridView.CurrentRow.Cells[6].Value is DBNull)) {
+                pbBox.Image = ByteArrayToImage ((byte[])carReportDBDataGridView.CurrentRow.Cells[6].Value);
+            } else {
+                pbBox.Image = null;
+            }
+
+            
+
+            
         }
     }
 }
