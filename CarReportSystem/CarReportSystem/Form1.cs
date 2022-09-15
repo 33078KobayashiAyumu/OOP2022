@@ -17,9 +17,12 @@ namespace CarReportSystem {
     public partial class Form1 : Form {
         Settings settings = Settings.getInstance();
         int mode = 0;
-        BindingList<CarReport> listCarReports = new BindingList<CarReport> ();
         public Form1 () {
             InitializeComponent ();
+            carReportDBDataGridView.RowsDefaultCellStyle.BackColor = Color.White;
+            carReportDBDataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.Aqua ;
+            carReportDBDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            carReportDBDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
 
         private void btEnd_Click (object sender, EventArgs e) {
@@ -30,9 +33,13 @@ namespace CarReportSystem {
         private void btAdd_Click (object sender, EventArgs e) {
             DataRow newRow = infosys202229DataSet.CarReportDB.NewRow ();
 
+            if (String.IsNullOrWhiteSpace (cmbCarName.Text)) {
+                MessageBox.Show ("氏名が入力されていません");
+                return;
+            }
             newRow[1] = dtp.Value;
             newRow[2] = cmbRec.Text;
-            newRow[3] = MakerChck();
+            newRow[3] = MakerChck ();
             newRow[4] = cmbCarName.Text;
             newRow[5] = txtReport.Text;
             newRow[6] = ImageToByteArray (pbBox.Image);
@@ -40,11 +47,15 @@ namespace CarReportSystem {
             //データセットへ新しいレコードを追加
             infosys202229DataSet.CarReportDB.Rows.Add (newRow);
             //データベース更新
-            this.carReportDBTableAdapter.Update (this.infosys202229DataSet.CarReportDB);
+            DB_Save ();
 
             setCmbRec (cmbRec.Text);
 
             setCmbCarName (cmbCarName.Text);
+        }
+
+        private void DB_Save () {
+            this.carReportDBTableAdapter.Update (this.infosys202229DataSet.CarReportDB);
         }
 
         private CarReport.MakerGroup MakerChck () {
@@ -84,6 +95,10 @@ namespace CarReportSystem {
             this.Validate ();
             this.carReportDBBindingSource.EndEdit ();
             this.tableAdapterManager.UpdateAll (this.infosys202229DataSet);
+
+            setCmbRec (cmbRec.Text);
+
+            setCmbCarName (cmbCarName.Text);
         }
 
 
@@ -114,6 +129,20 @@ namespace CarReportSystem {
         private void 開くToolStripMenuItem_Click (object sender, EventArgs e) {
             // TODO: このコード行はデータを 'infosys202229DataSet.CarReportDB' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
             this.carReportDBTableAdapter.Fill (this.infosys202229DataSet.CarReportDB);
+            cmbRec.Items.Clear ();    //コンボボックスのアイテム消去
+            cmbCarName.Items.Clear ();    //コンボボックスのアイテム消去
+                                          //コンボボックスへ新規登録
+
+
+            for (int i = 0; i < carReportDBDataGridView.Rows.Count; i++) {
+                setCmbRec (carReportDBDataGridView.Rows[i].Cells[2].Value.ToString ());
+                setCmbCarName (carReportDBDataGridView.Rows[i].Cells[4].Value.ToString ());
+            }
+
+            carReportDBDataGridView.Refresh (); //データグリッドビュー更新
+            EnabledCheck ();
+
+
         }
 
         private void 終了ToolStripMenuItem1_Click (object sender, EventArgs e) {
@@ -158,6 +187,9 @@ namespace CarReportSystem {
                 setCmbRec (carReportDBDataGridView.Rows[i].Cells[2].Value.ToString ());
                 setCmbCarName (carReportDBDataGridView.Rows[i].Cells[4].Value.ToString ());
             }
+
+            carReportDBDataGridView.Refresh (); //データグリッドビュー更新
+            EnabledCheck ();
 
 
         }
@@ -263,6 +295,72 @@ namespace CarReportSystem {
             
 
             
+        }
+
+        private void 追加ToolStripMenuItem_Click (object sender, EventArgs e) {
+            DataRow newRow = infosys202229DataSet.CarReportDB.NewRow ();
+
+            newRow[1] = dtp.Value;
+            newRow[2] = cmbRec.Text;
+            newRow[3] = MakerChck ();
+            newRow[4] = cmbCarName.Text;
+            newRow[5] = txtReport.Text;
+            newRow[6] = ImageToByteArray (pbBox.Image);
+
+            //データセットへ新しいレコードを追加
+            infosys202229DataSet.CarReportDB.Rows.Add (newRow);
+            //データベース更新
+            DB_Save ();
+
+            setCmbRec (cmbRec.Text);
+
+            setCmbCarName (cmbCarName.Text);
+        }
+
+        private void 修正ToolStripMenuItem_Click (object sender, EventArgs e) {
+            //各テキストボックスからデータグリッドビューに設定
+            carReportDBDataGridView.CurrentRow.Cells[1].Value = dtp.Value;
+            carReportDBDataGridView.CurrentRow.Cells[2].Value = cmbRec.Text;
+            carReportDBDataGridView.CurrentRow.Cells[3].Value = MakerChck ();
+            carReportDBDataGridView.CurrentRow.Cells[4].Value = cmbCarName.Text;
+            carReportDBDataGridView.CurrentRow.Cells[5].Value = txtReport.Text;
+            carReportDBDataGridView.CurrentRow.Cells[6].Value = ImageToByteArray ((pbBox.Image));
+
+            //データセットの中をデータベースに反映(保存)
+            this.Validate ();
+            this.carReportDBBindingSource.EndEdit ();
+            DB_Save ();
+
+            setCmbRec (cmbRec.Text);
+
+            setCmbCarName (cmbCarName.Text);
+        }
+
+        private void btDel_Click (object sender, EventArgs e) {
+
+            DialogResult result = MessageBox.Show ("削除しますか?","警告",MessageBoxButtons.OKCancel);
+            if (result == System.Windows.Forms.DialogResult.OK) {
+                
+                DataGridViewSelectedRowCollection src = carReportDBDataGridView.SelectedRows;
+                for (int i = src.Count - 1; i >= 0; i--) {
+                    carReportDBDataGridView.Rows.RemoveAt (src[i].Index);
+
+                }
+                cmbRec.Text = null;
+                CheckClear ();
+                cmbCarName.Text = null;
+                txtReport.Text = null;
+                DB_Save ();
+                MessageBox.Show ("削除しました");
+            } else if (result == System.Windows.Forms.DialogResult.Cancel) {
+                MessageBox.Show ("キャンセルされました");
+                
+            }
+        }
+        private void EnabledCheck () {
+            btAdd.Enabled = btFix.Enabled = btDel.Enabled = btSearch.Enabled = btClear.Enabled
+            = 追加ToolStripMenuItem.Enabled = 修正ToolStripMenuItem.Enabled = carReportDBDataGridView.RowCount > 0 ? true : false; 
+
         }
     }
 }
