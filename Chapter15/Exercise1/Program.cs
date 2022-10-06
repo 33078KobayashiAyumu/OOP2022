@@ -25,11 +25,21 @@ namespace Exercise1 {
         }
 
         private static void Exercise1_2 () {
-            
+            var m = Library.Books.OrderByDescending(b=>b.Price).First();
+
+            Console.WriteLine ($"{m}");
         }
 
         private static void Exercise1_3 () {
-            
+
+            var books = Library.Books.GroupBy(b=>b.PublishedYear).OrderBy(b=>b.Key);
+            foreach (var i in books) {
+                Console.Write ($"{i.Key}");
+                foreach (var j in i) {
+                    
+                }
+                Console.WriteLine ($": {i.Count ()}冊");
+            }
         }
 
         private static void Exercise1_4 () {
