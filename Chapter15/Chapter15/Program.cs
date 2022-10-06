@@ -35,15 +35,28 @@ namespace Chapter15 {
                     } else {
                         break;
                     }
-                    Console.WriteLine ();
-                    foreach (var group in books.GroupBy(b=>b.PublishedYear).OrderBy(b=>b.Key)) {
-                        Console.WriteLine ($"{group.Key}年");
-                        foreach (var book in group) {
-                            var category = Library.Categories.Where (b => b.Id == book.CategoryId).First ();
-                            Console.WriteLine ($"   タイトル：{book.Title} 値段：{book.Price} カテゴリ：{category.Name}");
-                        }
-                    }
 
+                    Console.WriteLine ();
+                    var selected = Library
+                        .Books.Where (b => years.Contains (b.PublishedYear))
+                        .OrderBy (b => b.PublishedYear)
+                        .ThenBy (b => b.CategoryId)
+                        .Join (Library.Categories,//結合する2番目のシーケンス
+                             book => book.CategoryId,//対象シーケンスの結合キー
+                             category => category.Id,//２番目のシーケンスの結合キー
+                             (book, category) => new {
+                                 Title = book.Title,
+                                 Category = category.Name,
+                                 PublichedYear = book.PublishedYear,
+                                 price = book.Price
+                             }); 
+
+                    foreach (var book in selected .OrderByDescending(x=>x.PublichedYear).ThenBy(x=>x.Category)){
+                        //Console.Write ($"{book.PublichedYear}年");
+                        //var category = Library.Categories.Where (b => b.Id == book.CategoryId).First ();
+                        Console.WriteLine ($"出版年：{book.PublichedYear} タイトル：{book.Title} カテゴリ：{book.Category} {book.price}円 ");
+                    }
+                    Console.WriteLine ($"書籍の金額の合計 {selected.Sum(b=>b.price)}円");
                     break;
                 }
                 years.Add (i);
