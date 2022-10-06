@@ -43,19 +43,92 @@ namespace Exercise1 {
         }
 
         private static void Exercise1_4 () {
-            
+            var books = Library.Books
+                                .OrderByDescending (b => b.PublishedYear)
+                                .ThenBy (b => b.Price)
+                                .Join (Library.Categories,
+                                    book => book.CategoryId,
+                                    category => category.Id,
+                                    (book, category) => new {
+                                        Title = book.Title,
+                                        Category = category.Name,
+                                        PublishedYear = book.PublishedYear,
+                                        Price = book.Price
+                                    }
+                                 );
+            foreach (var book in books.OrderByDescending(b=>b.Price)) {
+                Console.WriteLine ($"{book.PublishedYear} {book.Price} {book.Title} ({book.Category})");
+            }
         }
 
         private static void Exercise1_5 () {
+            var books = Library.Books
+                              .Where (b => b.PublishedYear == 2016)
+                              .Join (Library.Categories,
+                                    book => book.CategoryId,
+                                    category => category.Id,
+                                    (book, category) => category.Name)
+                              .Distinct ();
+            foreach (var book in books) {
+                Console.WriteLine (book);
+            }
         }
 
         private static void Exercise1_6 () {
+            var books = Library.Books
+                                .OrderByDescending (b => b.Title)
+                                .Join (Library.Categories,
+                                    book => book.CategoryId,
+                                    category => category.Id,
+                                    (book, category) => new {
+                                        Title = book.Title,
+                                        Category = category.Name,
+                                        PublishedYear = book.PublishedYear,
+                                        Price = book.Price
+                                    }
+                                 );
+            foreach (var i in books.GroupBy (b => b.Category).OrderBy (b => b.Key)) {
+                Console.WriteLine ($"{i.Key}");
+                foreach (var j in i) {
+                    Console.WriteLine ($": {j.Title}");
+                }
+                
+            }
         }
 
         private static void Exercise1_7 () {
+            var books = Library.Books
+                              .Where (b => b.CategoryId == 1)
+                              .Join (Library.Categories,
+                                    book => book.CategoryId,
+                                    category => category.Id,
+                                    (book, category) => new {
+                                        Title = book.Title,
+                                        PublishedYear = book.PublishedYear,
+                                        category.Name });
+            foreach (var i in books.GroupBy (b => b.PublishedYear).OrderBy (b => b.Key)) {
+                Console.WriteLine ($"{i.Key}");
+                foreach (var j in i) {
+                    Console.WriteLine ($" {j.Title}");
+                }
+
+            }
+
         }
 
         private static void Exercise1_8 () {
+            var groups = Library.Categories
+                                .GroupJoin (Library.Books,
+                                                c => c.Id,
+                                                d => d.CategoryId,
+                                                (c, books) => new {
+                                                    Category = c.Name,
+                                                    Count = books.Count (),
+                                                });
+            foreach (var obj in groups.Where(b=>b.Count>=4)) {
+                Console.WriteLine ($"{obj.Category}");
+            }
+
         }
     }
 }
