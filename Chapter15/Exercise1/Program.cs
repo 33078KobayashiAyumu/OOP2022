@@ -57,7 +57,7 @@ namespace Exercise1 {
                                     }
                                  );
             foreach (var book in books.OrderByDescending(b=>b.Price)) {
-                Console.WriteLine ($"{book.PublishedYear} {book.Price} {book.Title} ({book.Category})");
+                Console.WriteLine ($"{book.PublishedYear}年 {book.Price}円 {book.Title} ({book.Category})");
             }
         }
 
