@@ -287,7 +287,13 @@ namespace CarReportSystem {
             txtReport.Text = carReportDBDataGridView.CurrentRow.Cells[5].Value.ToString ();
 
             if (!(carReportDBDataGridView.CurrentRow.Cells[6].Value is DBNull)) {
-                pbBox.Image = ByteArrayToImage ((byte[])carReportDBDataGridView.CurrentRow.Cells[6].Value);
+                try {
+                    pbBox.Image = ByteArrayToImage ((byte[])carReportDBDataGridView.CurrentRow.Cells[6].Value);
+                } catch (Exception) {
+
+                    
+                }
+                
             } else {
                 pbBox.Image = null;
             }
