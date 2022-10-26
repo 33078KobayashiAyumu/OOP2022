@@ -290,17 +290,17 @@ namespace CarReportSystem {
                 try {
                     pbBox.Image = ByteArrayToImage ((byte[])carReportDBDataGridView.CurrentRow.Cells[6].Value);
                 } catch (Exception) {
-
+                    pbBox.Image = null;
                     
                 }
                 
             } else {
                 pbBox.Image = null;
             }
-
             
 
-            
+
+
         }
 
         private void 追加ToolStripMenuItem_Click (object sender, EventArgs e) {
