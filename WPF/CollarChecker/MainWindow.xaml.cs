@@ -32,6 +32,7 @@ namespace CollarChecker {
         }
 
         private void Color () {
+
             label.Background = new SolidColorBrush (System.Windows.Media.Color.FromRgb ((byte)RSlider.Value, (byte)GSlider.Value, (byte)BSlider.Value));
             return;
         }
@@ -50,6 +51,7 @@ namespace CollarChecker {
         }
 
         private void ComboBox_SelectionChanged (object sender, SelectionChangedEventArgs e) {
+
             var colors = typeof (Colors).GetProperties (BindingFlags.Public | BindingFlags.Static);
 
             var mycolor = (MyColor)((ComboBox)sender).SelectedItem;
