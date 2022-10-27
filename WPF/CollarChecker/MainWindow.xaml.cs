@@ -28,12 +28,12 @@ namespace CollarChecker {
         }
 
         private void RSlider_ValueChanged (object sender, RoutedPropertyChangedEventArgs<double> e) {
-            Color ();
+            Color_set ();
         }
 
-        private void Color () {
+        private void Color_set () {
 
-            label.Background = new SolidColorBrush (System.Windows.Media.Color.FromRgb ((byte)RSlider.Value, (byte)GSlider.Value, (byte)BSlider.Value));
+            label.Background = new SolidColorBrush (Color.FromRgb ((byte)RSlider.Value, (byte)GSlider.Value, (byte)BSlider.Value));
             return;
         }
 
@@ -54,17 +54,35 @@ namespace CollarChecker {
 
             var colors = typeof (Colors).GetProperties (BindingFlags.Public | BindingFlags.Static);
 
-            var mycolor = (MyColor)((ComboBox)sender).SelectedItem;
-            var color = mycolor.Color;
-            var name = mycolor.Name;
+            Color color = Colors (sender);
 
             RSlider.Value = color.R;
             GSlider.Value = color.G;
             BSlider.Value = color.B;
         }
 
+        private static Color Colors (object sender) {
+            var mycolor = (MyColor)((ComboBox)sender).SelectedItem;
+            var color = mycolor.Color;
+            var name = mycolor.Name;
+            return color;
+        }
+
         private void Window_Loaded (object sender, RoutedEventArgs e) {
-            Color ();
+            Color_set ();
+        }
+
+        private void button_Click (object sender, RoutedEventArgs e) {
+            stockList.Items.Add ("R: " + A.Text + " G: " + B.Text +  "B: " + C.Text);
+
+        }
+
+        private void stockList_SelectionChanged (object sender, SelectionChangedEventArgs e) {
+
+            A.Text = (string)stockList.SelectedItem;
+            B.Text = (string)stockList.SelectedItem;
+            C.Text = (string)stockList.SelectedItem;
+
         }
     }
 }
