@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CollarChecker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="500">
+        Title="MainWindow" Height="320.074" Width="500" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -15,11 +15,12 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Name="label" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="200" Height="200"
-               />
+        <Label Name="label" Grid.RowSpan="4" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="200" Height="200"/>
+        
 
-        <Grid Grid.Column="1">
+            <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -27,8 +28,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="R" VerticalAlignment="Center"  HorizontalAlignment="Right" FontSize="20"/>
-            <Slider  Grid.ColumnSpan="2" x:Name="RSlider" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Minimum="0" Maximum="255" />
-            <TextBox  x:Name="R" VerticalAlignment="Center" HorizontalAlignment="Center" 
+            <Slider  Grid.ColumnSpan="2" x:Name="RSlider" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Minimum="0" Maximum="255" ValueChanged="RSlider_ValueChanged"/>
+            <TextBox  x:Name="A" VerticalAlignment="Center" HorizontalAlignment="Center" 
                       Text="{Binding ElementName=RSlider, Path=Value,UpdateSourceTrigger=PropertyChanged}" 
                       Grid.Row="0" Grid.Column="3" FontSize="20" />
         </Grid>
@@ -41,7 +42,7 @@
             </Grid.ColumnDefinitions>
             
             <TextBlock Text="G" VerticalAlignment="Center"  HorizontalAlignment="Right" FontSize="20"/>
-            <Slider Grid.ColumnSpan="2" x:Name="GSlider" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Minimum="0" Maximum="255" />
+            <Slider Grid.ColumnSpan="2" x:Name="GSlider" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Minimum="0" Maximum="255" ValueChanged="RSlider_ValueChanged"/>
             <TextBox x:Name="G"  VerticalAlignment="Center" HorizontalAlignment="Center" 
                       Text="{Binding ElementName=GSlider, Path=Value,UpdateSourceTrigger=PropertyChanged}" 
                       Grid.Row="0" Grid.Column="3" FontSize="20" />
@@ -55,11 +56,27 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="G" VerticalAlignment="Center"  HorizontalAlignment="Right" FontSize="20"/>
-            <Slider Grid.ColumnSpan="2" x:Name="BSlider" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Minimum="0" Maximum="255" />
+            <TextBlock Text="B" VerticalAlignment="Center"  HorizontalAlignment="Right" FontSize="20"/>
+            <Slider Grid.ColumnSpan="2" x:Name="BSlider" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Minimum="0" Maximum="255" ValueChanged="RSlider_ValueChanged"/>
             <TextBox x:Name="B"  VerticalAlignment="Center" HorizontalAlignment="Center" 
                       Text="{Binding ElementName=BSlider, Path=Value,UpdateSourceTrigger=PropertyChanged}" 
                       Grid.Row="0" Grid.Column="3" FontSize="20" />
+        </Grid>
+        <Grid Grid.Row="3" Grid.Column="1">
+            <ComboBox ItemsSource="{Binding}" SelectedValue="{Binding Color}" Margin="3,30,3,3" Height="24" VerticalAlignment="Top" VerticalContentAlignment="Stretch" HorizontalAlignment="Stretch" Width="155" SelectionChanged="ComboBox_SelectionChanged">
+	<ComboBox.ItemTemplate>
+	    <DataTemplate>
+	        <StackPanel Orientation="Horizontal">
+	            <Border Width="20" Height="Auto" Margin="5,0" BorderThickness="1" BorderBrush="Black" Loaded="Border_Loaded"  >
+	                <Border.Background>
+	                    <SolidColorBrush Color="{Binding Color}"/>
+	                </Border.Background>
+	            </Border>
+	            <TextBlock Text="{Binding Name}"></TextBlock>
+	        </StackPanel>
+	    </DataTemplate>
+	</ComboBox.ItemTemplate>
+</ComboBox>
         </Grid>
     </Grid>
 </Window>
