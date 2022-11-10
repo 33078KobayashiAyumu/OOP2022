@@ -80,7 +80,8 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </Grid>
-        <Button x:Name="button" Grid.Row="0" Grid.Column="2" Content="保存" HorizontalAlignment="Stretch" Margin="50,10,50,30" Click="button_Click"/>
+        <Button x:Name="button" Grid.Row="0" Grid.Column="2" Content="保存" HorizontalAlignment="Right" Margin="50,10,50,30" Click="button_Click"/>
+        <Button x:Name="del" Grid.Row="0" Grid.Column="2" Content="削除" HorizontalAlignment="Left" Margin="50,10,50,30" Click="del_Click"/>
         <ListBox x:Name="stockList" Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Margin="20,20,20,20" SelectionChanged="stockList_SelectionChanged"/>
     </Grid>
 </Window>

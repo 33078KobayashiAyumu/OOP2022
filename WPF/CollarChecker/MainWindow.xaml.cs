@@ -76,29 +76,39 @@ namespace CollarChecker {
         private void button_Click (object sender, RoutedEventArgs e) {
 
 
-            MyColor stColor = new MyColor();
+            MyColor setColor = new MyColor();
 
             var r = byte.Parse (A.Text);
             var g = byte.Parse (B.Text);
             var b = byte.Parse (C.Text);
-            stColor.Color = Color.FromRgb (r,g,b);
+            setColor.Color = Color.FromRgb (r,g,b);
 
             var colorName = ((IEnumerable<MyColor>)DataContext)
-                .Where (c => c.Color.R == stColor.Color.R &&
-                             c.Color.G == stColor.Color.G &&
-                             c.Color.B == stColor.Color.B).FirstOrDefault ();
-            stockList.Items.Insert (0,colorName?.Name ?? "R:" + A.Text + "G:" + B.Text + "B:" + C.Text);
-            myColors.Insert(0,stColor);
+                .Where (c => c.Color.R == setColor.Color.R &&
+                             c.Color.G == setColor.Color.G &&
+                             c.Color.B == setColor.Color.B).FirstOrDefault ();
+            stockList.Items.Insert (0,colorName?.Name ?? "R:" + A.Text + " G:" + B.Text + " B:" + C.Text);
+            myColors.Insert(0,setColor);
 
         }
 
         private void stockList_SelectionChanged (object sender, SelectionChangedEventArgs e) {
 
-            RSlider.Value = myColors[stockList.SelectedIndex].Color.R;
-            GSlider.Value = myColors[stockList.SelectedIndex].Color.G;
-            BSlider.Value = myColors[stockList.SelectedIndex].Color.B;
+            if (stockList.SelectedIndex != -1) {
+                RSlider.Value = myColors[stockList.SelectedIndex].Color.R;
+                GSlider.Value = myColors[stockList.SelectedIndex].Color.G;
+                BSlider.Value = myColors[stockList.SelectedIndex].Color.B;
+            } else {
+                
+            }
+            
 
             Color_set ();
+        }
+
+        private void del_Click (object sender, RoutedEventArgs e) {
+            
+            stockList.Items.Remove (stockList.SelectedItem);
         }
     }
 }
