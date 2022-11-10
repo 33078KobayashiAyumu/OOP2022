@@ -102,13 +102,17 @@ namespace CollarChecker {
             
 
             Color_set ();
+            
+            
         }
 
         private void del_Click (object sender, RoutedEventArgs e) {
-            
+
+            if (stockList.SelectedIndex == -1) return;
             stockList.Items.RemoveAt (stockList.SelectedIndex);
             if (stockList.SelectedIndex == -1) return;
             myColors.RemoveAt (stockList.SelectedIndex);
+
         }
     }
 }
