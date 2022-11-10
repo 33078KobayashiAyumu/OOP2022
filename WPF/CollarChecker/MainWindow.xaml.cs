@@ -19,22 +19,29 @@ namespace CollarChecker {
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window {
+        MyColor mycolor = new MyColor ();
+        List<MyColor> myColors = new List<MyColor>();
         public MainWindow () {
             InitializeComponent ();
 
-            
+            mycolor = new MyColor ();
 
             DataContext = GetColorList ();
         }
 
         private void RSlider_ValueChanged (object sender, RoutedPropertyChangedEventArgs<double> e) {
             Color_set ();
+
         }
 
         private void Color_set () {
+            var r = byte.Parse (A.Text);
+            var g = byte.Parse (B.Text);
+            var b = byte.Parse (C.Text);
 
-            label.Background = new SolidColorBrush (Color.FromRgb ((byte)RSlider.Value, (byte)GSlider.Value, (byte)BSlider.Value));
-            return;
+
+            label.Background = new SolidColorBrush (Color.FromRgb (r, g, b));
+
         }
 
         /// <summary>
@@ -47,25 +54,19 @@ namespace CollarChecker {
         }
 
         private void Border_Loaded (object sender, RoutedEventArgs e) {
-
         }
 
         private void ComboBox_SelectionChanged (object sender, SelectionChangedEventArgs e) {
 
-            var colors = typeof (Colors).GetProperties (BindingFlags.Public | BindingFlags.Static);
+            mycolor = (MyColor)((ComboBox)sender).SelectedItem;
+            //var color = mycolor.Color;
+            //var name = mycolor.Name;
 
-            Color color = Colors (sender);
+            RSlider.Value = mycolor.Color.R;
+            GSlider.Value = mycolor.Color.G;
+            BSlider.Value = mycolor.Color.B;
 
-            RSlider.Value = color.R;
-            GSlider.Value = color.G;
-            BSlider.Value = color.B;
-        }
-
-        private static Color Colors (object sender) {
-            var mycolor = (MyColor)((ComboBox)sender).SelectedItem;
-            var color = mycolor.Color;
-            var name = mycolor.Name;
-            return color;
+            
         }
 
         private void Window_Loaded (object sender, RoutedEventArgs e) {
@@ -73,16 +74,31 @@ namespace CollarChecker {
         }
 
         private void button_Click (object sender, RoutedEventArgs e) {
-            stockList.Items.Add ("R: " + A.Text + " G: " + B.Text +  "B: " + C.Text);
+
+
+            MyColor stColor = new MyColor();
+
+            var r = byte.Parse (A.Text);
+            var g = byte.Parse (B.Text);
+            var b = byte.Parse (C.Text);
+            stColor.Color = Color.FromRgb (r,g,b);
+
+            var colorName = ((IEnumerable<MyColor>)DataContext)
+                .Where (c => c.Color.R == stColor.Color.R &&
+                             c.Color.G == stColor.Color.G &&
+                             c.Color.B == stColor.Color.B).FirstOrDefault ();
+            stockList.Items.Insert (0,colorName?.Name ?? "R:" + A.Text + "G:" + B.Text + "B:" + C.Text);
+            myColors.Insert(0,stColor);
 
         }
 
         private void stockList_SelectionChanged (object sender, SelectionChangedEventArgs e) {
 
-            A.Text = (string)stockList.SelectedItem;
-            B.Text = (string)stockList.SelectedItem;
-            C.Text = (string)stockList.SelectedItem;
+            RSlider.Value = myColors[stockList.SelectedIndex].Color.R;
+            GSlider.Value = myColors[stockList.SelectedIndex].Color.G;
+            BSlider.Value = myColors[stockList.SelectedIndex].Color.B;
 
+            Color_set ();
         }
     }
 }
