@@ -94,13 +94,11 @@ namespace CollarChecker {
 
         private void stockList_SelectionChanged (object sender, SelectionChangedEventArgs e) {
 
-            if (stockList.SelectedIndex != -1) {
+            if (stockList.SelectedIndex == -1) return;
                 RSlider.Value = myColors[stockList.SelectedIndex].Color.R;
                 GSlider.Value = myColors[stockList.SelectedIndex].Color.G;
                 BSlider.Value = myColors[stockList.SelectedIndex].Color.B;
-            } else {
-                
-            }
+            
             
 
             Color_set ();
@@ -108,7 +106,9 @@ namespace CollarChecker {
 
         private void del_Click (object sender, RoutedEventArgs e) {
             
-            stockList.Items.Remove (stockList.SelectedItem);
+            stockList.Items.RemoveAt (stockList.SelectedIndex);
+            if (stockList.SelectedIndex == -1) return;
+            myColors.RemoveAt (stockList.SelectedIndex);
         }
     }
 }
