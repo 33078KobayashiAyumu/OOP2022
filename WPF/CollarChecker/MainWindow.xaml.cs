@@ -90,6 +90,10 @@ namespace CollarChecker {
             stockList.Items.Insert (0,colorName?.Name ?? "R:" + A.Text + " G:" + B.Text + " B:" + C.Text);
             myColors.Insert(0,setColor);
 
+            if (stockList.Items.Count > 0) {
+                del.IsEnabled = true;
+            }
+
         }
 
         private void stockList_SelectionChanged (object sender, SelectionChangedEventArgs e) {
@@ -99,8 +103,6 @@ namespace CollarChecker {
                 GSlider.Value = myColors[stockList.SelectedIndex].Color.G;
                 BSlider.Value = myColors[stockList.SelectedIndex].Color.B;
             
-            
-
             Color_set ();
             
             
@@ -112,7 +114,10 @@ namespace CollarChecker {
             stockList.Items.RemoveAt (stockList.SelectedIndex);
             if (stockList.SelectedIndex == -1) return;
             myColors.RemoveAt (stockList.SelectedIndex);
-
+            Color_set ();
+            if (stockList.Items.Count <= 0) {
+                del.IsEnabled = false;
+            }
         }
     }
 }
