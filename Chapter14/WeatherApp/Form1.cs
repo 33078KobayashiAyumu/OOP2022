@@ -236,11 +236,7 @@ namespace WeatherApp {
                     dString = wc.DownloadString ("https://www.jma.go.jp/bosai/forecast/data/overview_forecast/450000.json");
                     dString1 = wc.DownloadString ("https://www.jma.go.jp/bosai/forecast/data/forecast/450000.json");
                     break;
-                case "奄美地方":
-                    dString = wc.DownloadString ("https://www.jma.go.jp/bosai/forecast/data/overview_forecast/460040.json");
-                    dString1 = wc.DownloadString ("https://www.jma.go.jp/bosai/forecast/data/forecast/460040.json");
-                    break;
-                case "鹿児島県（奄美地方除く）":
+                case "鹿児島県":
                     dString = wc.DownloadString ("https://www.jma.go.jp/bosai/forecast/data/overview_forecast/460100.json");
                     dString1 = wc.DownloadString ("https://www.jma.go.jp/bosai/forecast/data/forecast/471460100000.json");
                     break;
@@ -268,18 +264,33 @@ namespace WeatherApp {
             tbWeatherInfo.Text = json.text;
 
             var json1 = JsonConvert.DeserializeObject<Class1[]> (dString1);
+            tbH.Text = json1[1].tempAverage.areas[0].max + "度";
+            tbL.Text = json1[1].tempAverage.areas[0].min + "度";
+
             tbToday.Text = json1[0].timeSeries[0].areas[0].weathers[0];
             tbTom.Text = json1[0].timeSeries[0].areas[0].weathers[1];
-            tbAfter.Text = json1[0].timeSeries[0].areas[0].weathers[2];
-            tbH.Text = json1[1].precipAverage.areas[0].max + "度";
-            tbL.Text = json1[1].precipAverage.areas[0].min + "度";
-            pbToday.ImageLocation = @"https://www.jma.go.jp/bosai/forecast/img/" + json1[0].timeSeries[0].areas[0].weatherCodes[0] +".png";
+            
+            pbToday.ImageLocation = @"https://www.jma.go.jp/bosai/forecast/img/" + json1[0].timeSeries[0].areas[0].weatherCodes[0] + ".png";
             pbTom.ImageLocation = @"https://www.jma.go.jp/bosai/forecast/img/" + json1[0].timeSeries[0].areas[0].weatherCodes[1] + ".png";
-            pbAfter.ImageLocation = @"https://www.jma.go.jp/bosai/forecast/img/" + json1[0].timeSeries[0].areas[0].weatherCodes[2] + ".png";
+
+            pb1.ImageLocation = @"https://www.jma.go.jp/bosai/forecast/img/" + json1[1].timeSeries[0].areas[0].weatherCodes[0] + ".png";
+            pb2.ImageLocation = @"https://www.jma.go.jp/bosai/forecast/img/" + json1[1].timeSeries[0].areas[0].weatherCodes[1] + ".png";
+            pb3.ImageLocation = @"https://www.jma.go.jp/bosai/forecast/img/" + json1[1].timeSeries[0].areas[0].weatherCodes[2] + ".png";
             pb4.ImageLocation = @"https://www.jma.go.jp/bosai/forecast/img/" + json1[1].timeSeries[0].areas[0].weatherCodes[3] + ".png";
             pb5.ImageLocation = @"https://www.jma.go.jp/bosai/forecast/img/" + json1[1].timeSeries[0].areas[0].weatherCodes[4] + ".png";
             pb6.ImageLocation = @"https://www.jma.go.jp/bosai/forecast/img/" + json1[1].timeSeries[0].areas[0].weatherCodes[5] + ".png";
             pb7.ImageLocation = @"https://www.jma.go.jp/bosai/forecast/img/" + json1[1].timeSeries[0].areas[0].weatherCodes[6] + ".png";
+            try {
+                tbAfter.Text = json1[0].timeSeries[0].areas[0].weathers[2];
+            } catch (Exception) {
+
+            }
+            try {
+                pbAfter.ImageLocation = json1[0].timeSeries[0].areas[0].weathers[2];
+            } catch (Exception) {
+
+            }
+
         }
 
         private void bt北海道_Click (object sender, EventArgs e) {
@@ -365,8 +376,7 @@ namespace WeatherApp {
             cmbArea.Items.Add ("熊本県");
             cmbArea.Items.Add ("大分県");
             cmbArea.Items.Add ("宮崎県");
-            cmbArea.Items.Add ("奄美地方");
-            cmbArea.Items.Add ("鹿児島県（奄美地方除く）");
+            cmbArea.Items.Add ("鹿児島県");
         }
 
         private void bt沖縄_Click (object sender, EventArgs e) {

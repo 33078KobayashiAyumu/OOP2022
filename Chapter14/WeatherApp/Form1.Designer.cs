@@ -59,6 +59,9 @@ namespace WeatherApp {
             this.pb6 = new System.Windows.Forms.PictureBox();
             this.pb7 = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.pb1 = new System.Windows.Forms.PictureBox();
+            this.pb2 = new System.Windows.Forms.PictureBox();
+            this.pb3 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbAfter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbToday)).BeginInit();
@@ -67,6 +70,9 @@ namespace WeatherApp {
             ((System.ComponentModel.ISupportInitialize)(this.pb5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb3)).BeginInit();
             this.SuspendLayout();
             // 
             // tbWeatherInfo
@@ -137,7 +143,7 @@ namespace WeatherApp {
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.label4.Location = new System.Drawing.Point(490, 37);
+            this.label4.Location = new System.Drawing.Point(474, 37);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 16);
             this.label4.TabIndex = 3;
@@ -149,14 +155,14 @@ namespace WeatherApp {
             this.tbToday.Location = new System.Drawing.Point(418, 57);
             this.tbToday.Multiline = true;
             this.tbToday.Name = "tbToday";
-            this.tbToday.Size = new System.Drawing.Size(346, 45);
+            this.tbToday.Size = new System.Drawing.Size(381, 45);
             this.tbToday.TabIndex = 0;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.label5.Location = new System.Drawing.Point(490, 127);
+            this.label5.Location = new System.Drawing.Point(474, 127);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(85, 16);
             this.label5.TabIndex = 3;
@@ -165,17 +171,17 @@ namespace WeatherApp {
             // tbTom
             // 
             this.tbTom.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.tbTom.Location = new System.Drawing.Point(418, 156);
+            this.tbTom.Location = new System.Drawing.Point(418, 164);
             this.tbTom.Multiline = true;
             this.tbTom.Name = "tbTom";
-            this.tbTom.Size = new System.Drawing.Size(346, 45);
+            this.tbTom.Size = new System.Drawing.Size(381, 45);
             this.tbTom.TabIndex = 0;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.label6.Location = new System.Drawing.Point(490, 213);
+            this.label6.Location = new System.Drawing.Point(474, 233);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(101, 16);
             this.label6.TabIndex = 3;
@@ -184,10 +190,10 @@ namespace WeatherApp {
             // tbAfter
             // 
             this.tbAfter.Font = new System.Drawing.Font("MS UI Gothic", 12F);
-            this.tbAfter.Location = new System.Drawing.Point(418, 250);
+            this.tbAfter.Location = new System.Drawing.Point(418, 269);
             this.tbAfter.Multiline = true;
             this.tbAfter.Name = "tbAfter";
-            this.tbAfter.Size = new System.Drawing.Size(346, 45);
+            this.tbAfter.Size = new System.Drawing.Size(381, 45);
             this.tbAfter.TabIndex = 0;
             // 
             // label7
@@ -329,7 +335,7 @@ namespace WeatherApp {
             // 
             // pbAfter
             // 
-            this.pbAfter.Location = new System.Drawing.Point(1167, 188);
+            this.pbAfter.Location = new System.Drawing.Point(651, 213);
             this.pbAfter.Name = "pbAfter";
             this.pbAfter.Size = new System.Drawing.Size(100, 50);
             this.pbAfter.TabIndex = 7;
@@ -337,7 +343,7 @@ namespace WeatherApp {
             // 
             // pbTom
             // 
-            this.pbTom.Location = new System.Drawing.Point(1167, 103);
+            this.pbTom.Location = new System.Drawing.Point(651, 108);
             this.pbTom.Name = "pbTom";
             this.pbTom.Size = new System.Drawing.Size(100, 50);
             this.pbTom.TabIndex = 7;
@@ -345,7 +351,7 @@ namespace WeatherApp {
             // 
             // pbToday
             // 
-            this.pbToday.Location = new System.Drawing.Point(1167, 28);
+            this.pbToday.Location = new System.Drawing.Point(651, 3);
             this.pbToday.Name = "pbToday";
             this.pbToday.Size = new System.Drawing.Size(100, 50);
             this.pbToday.TabIndex = 7;
@@ -396,11 +402,35 @@ namespace WeatherApp {
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label9.Location = new System.Drawing.Point(1067, 131);
+            this.label9.Location = new System.Drawing.Point(1026, 199);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(48, 164);
             this.label9.TabIndex = 3;
             this.label9.Text = "週間天気";
+            // 
+            // pb1
+            // 
+            this.pb1.Location = new System.Drawing.Point(1167, 14);
+            this.pb1.Name = "pb1";
+            this.pb1.Size = new System.Drawing.Size(100, 50);
+            this.pb1.TabIndex = 7;
+            this.pb1.TabStop = false;
+            // 
+            // pb2
+            // 
+            this.pb2.Location = new System.Drawing.Point(1167, 103);
+            this.pb2.Name = "pb2";
+            this.pb2.Size = new System.Drawing.Size(100, 50);
+            this.pb2.TabIndex = 7;
+            this.pb2.TabStop = false;
+            // 
+            // pb3
+            // 
+            this.pb3.Location = new System.Drawing.Point(1167, 185);
+            this.pb3.Name = "pb3";
+            this.pb3.Size = new System.Drawing.Size(100, 50);
+            this.pb3.TabIndex = 7;
+            this.pb3.TabStop = false;
             // 
             // Form1
             // 
@@ -413,8 +443,11 @@ namespace WeatherApp {
             this.Controls.Add(this.pb6);
             this.Controls.Add(this.pb5);
             this.Controls.Add(this.pb4);
+            this.Controls.Add(this.pb3);
             this.Controls.Add(this.pbAfter);
+            this.Controls.Add(this.pb2);
             this.Controls.Add(this.pbTom);
+            this.Controls.Add(this.pb1);
             this.Controls.Add(this.pbToday);
             this.Controls.Add(this.bt九州);
             this.Controls.Add(this.bt沖縄);
@@ -456,6 +489,9 @@ namespace WeatherApp {
             ((System.ComponentModel.ISupportInitialize)(this.pb5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -498,6 +534,9 @@ namespace WeatherApp {
         private System.Windows.Forms.PictureBox pb6;
         private System.Windows.Forms.PictureBox pb7;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.PictureBox pb1;
+        private System.Windows.Forms.PictureBox pb2;
+        private System.Windows.Forms.PictureBox pb3;
     }
 }
 
